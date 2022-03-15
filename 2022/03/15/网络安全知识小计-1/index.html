@@ -20,25 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="CTFHUB-SQL注入-2思维小计函数解析updatexml() 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回 0x7e 是~的十六进制，用于显示完整信息，避免被吃 步骤1.F12查看页面注释，有提示，在url中加入?tips&#x3D;1出现报错信息 2.burp抓包尝试在name后加上&#39;,会出现报错 ![1](E:...">
+  <meta name="description" content="数据库提权MOF提权：nullevt.mot每分钟执行一次，写入CMD命令，则会执行 UDF提权： 调用自定义函数  启动项提权： 用 MySQL 将自定义脚本导入到启动项中 IPS&#x2F;IDS&#x2F;HIDS IDS 入侵检测系统 HIDS基于主机，检测文件和应急响应等 IPS 入侵防御系统 linux、windows命令：过滤文件、查看进程环境变量​    linux：第一步：获取进">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CTFHUB-SQL注入-2">
-<meta property="og:url" content="http://example.com/2022/03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/index.html">
+<meta property="og:title" content="网络安全知识小计-1">
+<meta property="og:url" content="http://example.com/2022/03/15/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/index.html">
 <meta property="og:site_name" content="JJhome">
-<meta property="og:description" content="CTFHUB-SQL注入-2思维小计函数解析updatexml() 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回 0x7e 是~的十六进制，用于显示完整信息，避免被吃 步骤1.F12查看页面注释，有提示，在url中加入?tips&#x3D;1出现报错信息 2.burp抓包尝试在name后加上&#39;,会出现报错 ![1](E:...">
+<meta property="og:description" content="数据库提权MOF提权：nullevt.mot每分钟执行一次，写入CMD命令，则会执行 UDF提权： 调用自定义函数  启动项提权： 用 MySQL 将自定义脚本导入到启动项中 IPS&#x2F;IDS&#x2F;HIDS IDS 入侵检测系统 HIDS基于主机，检测文件和应急响应等 IPS 入侵防御系统 linux、windows命令：过滤文件、查看进程环境变量​    linux：第一步：获取进">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/2.png">
-<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/3.png">
-<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/4.png">
-<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/5.png">
-<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/6.png">
-<meta property="article:published_time" content="2022-03-14T16:35:30.000Z">
-<meta property="article:modified_time" content="2022-03-15T07:01:46.078Z">
+<meta property="article:published_time" content="2022-03-15T14:22:14.000Z">
+<meta property="article:modified_time" content="2022-03-15T14:23:50.146Z">
 <meta property="article:author" content="UknowJJ">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/2.png">
 
-<link rel="canonical" href="http://example.com/2022/03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/">
+<link rel="canonical" href="http://example.com/2022/03/15/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/">
 
 
 <script id="page-configurations">
@@ -51,7 +45,7 @@
   };
 </script>
 
-  <title>CTFHUB-SQL注入-2 | JJhome</title>
+  <title>网络安全知识小计-1 | JJhome</title>
   
 
 
@@ -156,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/15/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/15/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          CTFHUB-SQL注入-2
+          网络安全知识小计-1
         </h1>
 
         <div class="post-meta">
@@ -180,7 +174,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-03-15 00:35:30 / Modified: 15:01:46" itemprop="dateCreated datePublished" datetime="2022-03-15T00:35:30+08:00">2022-03-15</time>
+              <time title="Created: 2022-03-15 22:22:14 / Modified: 22:23:50" itemprop="dateCreated datePublished" datetime="2022-03-15T22:22:14+08:00">2022-03-15</time>
             </span>
 
           
@@ -194,24 +188,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="CTFHUB-SQL注入-2思维小计"><a href="#CTFHUB-SQL注入-2思维小计" class="headerlink" title="CTFHUB-SQL注入-2思维小计"></a>CTFHUB-SQL注入-2思维小计</h1><h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
-<p><code>0x7e</code> 是~的十六进制，用于显示完整信息，避免被吃</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.F12查看页面注释，有提示，在url中加入<code>?tips=1</code>出现报错信息</p>
-<p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错</p>
-<p>![1](E:...          This is Uknow—JJ\A一些小记录\notes\博客图片\1.png)</p>
-<p>3.order by 4会报错，确定只有三列，这是一个报错注入</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/2.png" alt="2"></p>
-<p>4.用updatexml函数进行报错返回值<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/3.png" alt="3"></p>
-<p>构建语句发现只返回了一个~</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/4.png" alt="4"></p>
-<p>发现中间这个值才会被返回<br><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/5.png" alt="5"></p>
-<p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/6.png" alt="6"></p>
-<p>查出库名为note <code>123’ and updatexml(1,concat(0x7e,(select database())),3)#</code></p>
-<p>构造语句</p>
-<p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=’note‘)),1)#&amp;pass=xxxx</code></p>
-<p>原因：<code>select</code>被过滤双关键字绕过 selselectect</p>
-<h3 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h3><p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(flag)from fl4g)),1)#&amp;pass=xxxx</code></p>
+        <h3 id="数据库提权"><a href="#数据库提权" class="headerlink" title="数据库提权"></a>数据库提权</h3><p>MOF提权：<code>nullevt.mot</code>每分钟执行一次，写入CMD命令，则会执行</p>
+<p>UDF提权： 调用自定义函数 </p>
+<p>启动项提权： 用 MySQL 将自定义脚本导入到启动项中</p>
+<h3 id="IPS-x2F-IDS-x2F-HIDS"><a href="#IPS-x2F-IDS-x2F-HIDS" class="headerlink" title="IPS&#x2F;IDS&#x2F;HIDS"></a>IPS&#x2F;IDS&#x2F;HIDS</h3><p> <code>IDS</code> 入侵检测系统 <code>HIDS</code>基于主机，检测文件和应急响应等<br> <code>IPS</code> 入侵防御系统</p>
+<h3 id="linux、windows命令：过滤文件、查看进程环境变量"><a href="#linux、windows命令：过滤文件、查看进程环境变量" class="headerlink" title="linux、windows命令：过滤文件、查看进程环境变量"></a>linux、windows命令：过滤文件、查看进程环境变量</h3><p>​    linux：第一步：获取进程pid<br>​       <code>ps -ef | grep 进程名</code><br>​       第二部：<code>cat /proc/pid(进程ID)/environ</code><br>​       输出进程环境变量</p>
+<p>​    win：查看 <code>set path</code></p>
+<p>​     添加 <code>set 变量名=变量内容</code></p>
+<h3 id="WAF及其绕过方式"><a href="#WAF及其绕过方式" class="headerlink" title="WAF及其绕过方式"></a>WAF及其绕过方式</h3><p>WAF特性、脏字符（大小写，注释符，编码绕过等）</p>
+<h3 id="shiro反序列化"><a href="#shiro反序列化" class="headerlink" title="shiro反序列化"></a>shiro反序列化</h3><p>  shiro提供<code>rememberme</code>这个功能，会生成一个进行序列化的<code>cookie</code>，下次登陆可以通过识别<code>cookie</code>登陆。获取<code>cookie</code>后构造恶意代码，加密后作为<code>cookie</code>发送，服务端接收后出发反序列化漏洞</p>
+<h3 id="Sql注入的分类"><a href="#Sql注入的分类" class="headerlink" title="Sql注入的分类"></a>Sql注入的分类</h3><p>布尔盲注：只能从应用返回中推断语句执行后的布尔值</p>
+<p>时间盲注：应用没有明确的回显，只能使用特定的时间函数来判断</p>
+<p>报错注入：应用会显示全部或者部分的报错信息</p>
+<p>堆叠注入：加入 ; 后一次执行多条语句</p>
+<h3 id="Xss分类"><a href="#Xss分类" class="headerlink" title="Xss分类"></a>Xss分类</h3><p>存储：储存型XSS相比反射型来说危害较大，在这种漏洞中，攻击者能够把攻击载荷存入服务器的数据库中，造成持久化的攻击。</p>
+<p>Dom：一般和服务器的解析响应没有直接关系，而是在JavaScript脚本动态执行的过程中产生</p>
+<p>反射：反射型XSS通常出现在搜索等功能中，需要被攻击者点击对应的链接才能触发</p>
+<p>CSRF：基于xss，冒充用户发起请求</p>
+<p>XEE：在应用程序解读XML时，允许引入外部实体，就可以构造恶意内容，造成读取恶意文件，代码执行，端口探测。。。</p>
+<h3 id="文件上传、文件包含、目录遍历"><a href="#文件上传、文件包含、目录遍历" class="headerlink" title="文件上传、文件包含、目录遍历"></a>文件上传、文件包含、目录遍历</h3><p>文件上传：利用文件上传功能上传可执行脚本文件，文件上传还可能导致其他问题，比如上传超大文件造成占用带宽占满磁盘等</p>
+<p>文件包含：<code>includ,require</code>等函数可以加载远程文件，如果没有进行过滤，则执行文件的恶意代码</p>
+<p>目录遍历：搜索包含<code>index of</code>标题的网页，网站目录可以被任意浏览</p>
+<p>任意文件读取&#x2F;下载： 将文件变量改成<code>../../etc/passwd</code>等形式，下载预期外文件的漏洞</p>
 
     </div>
 
@@ -226,11 +224,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2022/03/15/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/" rel="next" title="布尔盲注某payload拆解分析">
-      布尔盲注某payload拆解分析 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/03/15/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/" rel="prev" title="布尔盲注某payload拆解分析">
+      <i class="fa fa-chevron-left"></i> 布尔盲注某payload拆解分析
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -289,7 +287,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CTFHUB-SQL%E6%B3%A8%E5%85%A5-2%E6%80%9D%E7%BB%B4%E5%B0%8F%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">CTFHUB-SQL注入-2思维小计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="nav-number">1.0.1.</span> <span class="nav-text">函数解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.0.2.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#payload"><span class="nav-number">1.0.3.</span> <span class="nav-text">payload</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83"><span class="nav-number">1.</span> <span class="nav-text">数据库提权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPS-x2F-IDS-x2F-HIDS"><span class="nav-number">2.</span> <span class="nav-text">IPS&#x2F;IDS&#x2F;HIDS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux%E3%80%81windows%E5%91%BD%E4%BB%A4%EF%BC%9A%E8%BF%87%E6%BB%A4%E6%96%87%E4%BB%B6%E3%80%81%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">linux、windows命令：过滤文件、查看进程环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WAF%E5%8F%8A%E5%85%B6%E7%BB%95%E8%BF%87%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">WAF及其绕过方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">shiro反序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sql%E6%B3%A8%E5%85%A5%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">6.</span> <span class="nav-text">Sql注入的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xss%E5%88%86%E7%B1%BB"><span class="nav-number">7.</span> <span class="nav-text">Xss分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E3%80%81%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E3%80%81%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86"><span class="nav-number">8.</span> <span class="nav-text">文件上传、文件包含、目录遍历</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

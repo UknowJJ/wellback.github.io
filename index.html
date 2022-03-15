@@ -147,6 +147,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/15/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="UknowJJ">
+      <meta itemprop="description" content="人们不会总是很快理解自己当前某件事的价值，直到它变成回忆。🍂">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JJhome">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/15/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/" class="post-title-link" itemprop="url">网络安全知识小计-1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-03-15 22:22:14 / Modified: 22:23:50" itemprop="dateCreated datePublished" datetime="2022-03-15T22:22:14+08:00">2022-03-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="数据库提权"><a href="#数据库提权" class="headerlink" title="数据库提权"></a>数据库提权</h3><p>MOF提权：<code>nullevt.mot</code>每分钟执行一次，写入CMD命令，则会执行</p>
+<p>UDF提权： 调用自定义函数 </p>
+<p>启动项提权： 用 MySQL 将自定义脚本导入到启动项中</p>
+<h3 id="IPS-x2F-IDS-x2F-HIDS"><a href="#IPS-x2F-IDS-x2F-HIDS" class="headerlink" title="IPS&#x2F;IDS&#x2F;HIDS"></a>IPS&#x2F;IDS&#x2F;HIDS</h3><p> <code>IDS</code> 入侵检测系统 <code>HIDS</code>基于主机，检测文件和应急响应等<br> <code>IPS</code> 入侵防御系统</p>
+<h3 id="linux、windows命令：过滤文件、查看进程环境变量"><a href="#linux、windows命令：过滤文件、查看进程环境变量" class="headerlink" title="linux、windows命令：过滤文件、查看进程环境变量"></a>linux、windows命令：过滤文件、查看进程环境变量</h3><p>​    linux：第一步：获取进程pid<br>​       <code>ps -ef | grep 进程名</code><br>​       第二部：<code>cat /proc/pid(进程ID)/environ</code><br>​       输出进程环境变量</p>
+<p>​    win：查看 <code>set path</code></p>
+<p>​     添加 <code>set 变量名=变量内容</code></p>
+<h3 id="WAF及其绕过方式"><a href="#WAF及其绕过方式" class="headerlink" title="WAF及其绕过方式"></a>WAF及其绕过方式</h3><p>WAF特性、脏字符（大小写，注释符，编码绕过等）</p>
+<h3 id="shiro反序列化"><a href="#shiro反序列化" class="headerlink" title="shiro反序列化"></a>shiro反序列化</h3><p>  shiro提供<code>rememberme</code>这个功能，会生成一个进行序列化的<code>cookie</code>，下次登陆可以通过识别<code>cookie</code>登陆。获取<code>cookie</code>后构造恶意代码，加密后作为<code>cookie</code>发送，服务端接收后出发反序列化漏洞</p>
+<h3 id="Sql注入的分类"><a href="#Sql注入的分类" class="headerlink" title="Sql注入的分类"></a>Sql注入的分类</h3><p>布尔盲注：只能从应用返回中推断语句执行后的布尔值</p>
+<p>时间盲注：应用没有明确的回显，只能使用特定的时间函数来判断</p>
+<p>报错注入：应用会显示全部或者部分的报错信息</p>
+<p>堆叠注入：加入 ; 后一次执行多条语句</p>
+<h3 id="Xss分类"><a href="#Xss分类" class="headerlink" title="Xss分类"></a>Xss分类</h3><p>存储：储存型XSS相比反射型来说危害较大，在这种漏洞中，攻击者能够把攻击载荷存入服务器的数据库中，造成持久化的攻击。</p>
+<p>Dom：一般和服务器的解析响应没有直接关系，而是在JavaScript脚本动态执行的过程中产生</p>
+<p>反射：反射型XSS通常出现在搜索等功能中，需要被攻击者点击对应的链接才能触发</p>
+<p>CSRF：基于xss，冒充用户发起请求</p>
+<p>XEE：在应用程序解读XML时，允许引入外部实体，就可以构造恶意内容，造成读取恶意文件，代码执行，端口探测。。。</p>
+<h3 id="文件上传、文件包含、目录遍历"><a href="#文件上传、文件包含、目录遍历" class="headerlink" title="文件上传、文件包含、目录遍历"></a>文件上传、文件包含、目录遍历</h3><p>文件上传：利用文件上传功能上传可执行脚本文件，文件上传还可能导致其他问题，比如上传超大文件造成占用带宽占满磁盘等</p>
+<p>文件包含：<code>includ,require</code>等函数可以加载远程文件，如果没有进行过滤，则执行文件的恶意代码</p>
+<p>目录遍历：搜索包含<code>index of</code>标题的网页，网站目录可以被任意浏览</p>
+<p>任意文件读取&#x2F;下载： 将文件变量改成<code>../../etc/passwd</code>等形式，下载预期外文件的漏洞</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/15/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -364,7 +444,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
