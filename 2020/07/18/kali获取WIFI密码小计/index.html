@@ -1,41 +1,453 @@
-extends ../_partial/layout
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-block content
-  .container.post
-    section.article
-      .title= page.title
-      .date 写于#{moment(page.date).format(theme.date_format)}
-      .content!= page.content
-      if page.tags
-        .tags!= list_tags(page.tags, { show_count: false, class: 'tag', style: false, separator: '' })
+<link rel="stylesheet" href="/css/main.css">
 
-  .container
-    ul.nav
-      if page.prev
-        li 上一篇：
-          a(href=url_for(page.prev.path))= page.prev.title || '未命名'
-      if page.next
-        li 下一篇：
-          a(href=url_for(page.next.path))= page.next.title || '未命名'
 
-    if !index && config.disqus_shortname
-      .comments
-        #disqus_thread
-          noscript Please enable JavaScript to view the 
-            a(href="http://disqus.com/?ref_noscript") comments powered by Disqus
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-block js
-  != js('script/post')
-  if config.disqus_shortname
-    script
-      | var disqus_shortname = '!{config.disqus_shortname}';
-      if page.permalink
-        | var disqus_url = '!{page.permalink}';
-        | (function(){
-        |  var dsq = document.createElement('script');
-        |  dsq.type = 'text/javascript';
-        |  dsq.async = true;
-        |  dsq.src = '//' + disqus_shortname + '.disqus.com/!{page.comments ? 'embed.js' : 'count.hs'}';
-        |  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        | })();
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="如何使用kali-linux得知隔壁房间WIFI密码下面主要介绍aircrack-ng,fluxion两个方法。还有wifite也挺好用，当然还有很多方法 （此文章从我自己CSDN账号上复制过来的） 注意:1.新手上路，大佬们多多指教，嘻嘻2.此贴仅为教程贴，拿自家WIFI测试，禁止使用此技术干违法or伤害他人行为的事情！！！！ 工具准备kali-linux无线网卡（有监听功能的），我用的是Ral">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kali获取WIFI密码小计">
+<meta property="og:url" content="http://example.com/2020/07/18/kali%E8%8E%B7%E5%8F%96WIFI%E5%AF%86%E7%A0%81%E5%B0%8F%E8%AE%A1/index.html">
+<meta property="og:site_name" content="JJhome">
+<meta property="og:description" content="如何使用kali-linux得知隔壁房间WIFI密码下面主要介绍aircrack-ng,fluxion两个方法。还有wifite也挺好用，当然还有很多方法 （此文章从我自己CSDN账号上复制过来的） 注意:1.新手上路，大佬们多多指教，嘻嘻2.此贴仅为教程贴，拿自家WIFI测试，禁止使用此技术干违法or伤害他人行为的事情！！！！ 工具准备kali-linux无线网卡（有监听功能的），我用的是Ral">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318122203450.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141749160.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141823837.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141823837-16475843351081.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141923149.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141936485.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141946299.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141957778.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757625270130.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757624478528.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/20210209215406469.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757623066525.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757622435223.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757621939021.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757621449619.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757618582717.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757618092015.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757617504613.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-16475761566799.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757616710911.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-16475761461937.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318142240026.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318142307080.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318120205311.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-16475761154592.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70.png">
+<meta property="article:published_time" content="2020-07-18T04:00:47.000Z">
+<meta property="article:modified_time" content="2020-07-18T04:00:47.000Z">
+<meta property="article:author" content="UknowJJ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318122203450.png">
+
+<link rel="canonical" href="http://example.com/2020/07/18/kali%E8%8E%B7%E5%8F%96WIFI%E5%AF%86%E7%A0%81%E5%B0%8F%E8%AE%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>kali获取WIFI密码小计 | JJhome</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JJhome</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/18/kali%E8%8E%B7%E5%8F%96WIFI%E5%AF%86%E7%A0%81%E5%B0%8F%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="UknowJJ">
+      <meta itemprop="description" content="人们不会总是很快理解自己当前某件事的价值，直到它变成回忆。🍂">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JJhome">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          kali获取WIFI密码小计
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-18 12:00:47" itemprop="dateCreated datePublished" datetime="2020-07-18T12:00:47+08:00">2020-07-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="如何使用kali-linux得知隔壁房间WIFI密码"><a href="#如何使用kali-linux得知隔壁房间WIFI密码" class="headerlink" title="如何使用kali-linux得知隔壁房间WIFI密码"></a>如何使用kali-linux得知隔壁房间WIFI密码</h1><p><strong>下面主要介绍aircrack-ng,fluxion两个方法。还有wifite也挺好用，当然还有很多方法</strong></p>
+<p>（此文章从我自己CSDN账号上复制过来的）</p>
+<p>注意:<br>1.新手上路，大佬们多多指教，嘻嘻<br>2.此贴仅为教程贴，拿自家WIFI测试，禁止使用此技术干违法or伤害他人行为的事情！！！！</p>
+<p>工具准备<br><code>kali-linux</code><br><code>无线网卡（有监听功能的），我用的是Ralink802.11 n</code><br><code>可以直接某宝搜索linux免驱网卡</code></p>
+<p>步骤：<br>1.插入网卡选择把网卡接入虚拟机</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318122203450.png" alt="image-20220318122203450"></p>
+<p>2.在命令窗口输入ifconfig查看网卡是否启动，如果有wlan0则为启动成功<br>（有的不叫wlan0，可以搜索更改教程我就不演示了）</p>
+<p>如果没有请看看虚拟机右下角USB接口是否亮着，是否接入成功，或者iwconfig查看一下是否有网卡</p>
+<h3 id="方法1（使用Aircrack-ng）"><a href="#方法1（使用Aircrack-ng）" class="headerlink" title="方法1（使用Aircrack-ng）"></a>方法1（使用Aircrack-ng）</h3><p>1.airmon-ng start wlan0(你的叫什么就写什么，我是wlan0)<br>2.ifconfig查看是否wlan0变成了wlan0mon，是的话就是启动成功</p>
+<p>4.airodump-ng wlan0mon开启监听，并选择你要攻击的WIFI（复制他的mac地址以及通信道到下一步）</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141749160.png" alt="image-20220318141749160"></p>
+<p>5.然后使用airodump-ng -c 11 –bssid 04:95:E6:23:B5:41 -w &#x2F;root&#x2F;wsb&#x2F;123 wlan0mon抓取握手包，-w后跟的是存放握手包目录，-c跟的是通信道，–bssid跟的是MAC地址</p>
+<p>6.此时以上都做好了，如果监听不到握手包，或者你懒得等了，直接采用暴力模式，洪水攻击（使它短断网，获得重新连接WIFI的机会从而握手一次，如果你要让他一直断网那你就多开几个攻击挂着吧，小心被打）<br>aireplay-ng -0 0 -a 04:95:E6:23:B5:41 wlan0mon，-a跟的是mac地址，获得握手包后记得按ctrl+c取消攻击</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141823837.png" alt="image-20220318141823837"></p>
+<p>出现 WPA handshak就抓取成功了.</p>
+<p>7.使用字典爆破出WIFI密码（你需要一个好字典）<br>aircrack-ng -w &#x2F;root&#x2F;zd&#x2F;wifi_top2000_passwd.txt &#x2F;root&#x2F;wsb&#x2F;123-01.cap （前为你字典目录，后为握手包目录）<br>爆破出来的wxb…就为我wifi密码，当然复杂的密码可能不存在字典里面，可能需要多个字典，或者自己使用kali里的工具生成一些字典尝试爆破，爆破对于简答密码很快，复杂的就不一定。如果不行就换第二个方法吧</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141823837-16475843351081.png"></p>
+<h3 id="方法二（fluxion）"><a href="#方法二（fluxion）" class="headerlink" title="方法二（fluxion）"></a>方法二（fluxion）</h3><p>1.同样先插入网卡，ifconfig查看是否启动成功<br>2.cd fluxion&#x2F;进入目录，再.&#x2F;fluxion启动程序（如果fluxion没安装，尝试git clone <a target="_blank" rel="noopener" href="https://github.com/FluxionNetwork/fluxion.git">https://github.com/FluxionNetwork/fluxion.git</a> ，可能会差一些组件，自己安装就好了，得全部环境配置好才能使用）<br>3.输入.&#x2F;fluxion后进入页面，选择中文吧，简单些。<br>4.选择你的网卡，直接3，回车，扫描所有通信道，扫描附近的WIFI，看见你需要找的WIFI后，按ctrl+c停止扫描，选择你要测试的WIFI</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141923149.png" alt="image-20220318141923149"></p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141936485.png" alt="image-20220318141936485"></p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141946299.png" alt="image-20220318141946299"></p>
+<p>5.先获取握手包，所以先选择2</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141957778.png" alt="image-20220318141957778"></p>
+<p>6.选择攻击方式，我都直接aireplay-ng,懒得花时间监听了，直接断网攻击，mdk3也是断网攻击，它有个小功能占领通信道时间长了可以使周围的无线路由器全部宕机，我试过一次，开了一晚上，然后网卡给我烧了，可能是我的网卡太垃圾了。</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757625270130.png" alt="在这里插入图片描述"></p>
+<p>7.选择验证</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757624478528.png" alt="在这里插入图片描述"></p>
+<p>8.三十秒一次（其实获取握手包你嫌慢，步骤多，你可以使用方法一的获取方法配合使用），同步验证</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/20210209215406469.png" alt="在这里插入图片描述">    </p>
+<p>9.开始攻击了，注意看左下角是否获取握手包，获取了就可以了，等待，说实话我觉得慢，还不如配合方法一使用，看情况吧</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757623066525.png" alt="在这里插入图片描述"></p>
+<p>10.获取成功，选择进攻方式</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757622435223.png" alt="在这里插入图片描述"></p>
+<p>11.选择创建wifi钓鱼网站（使别人不能连上自己家WiFi，再创建一个同名字WiFi，诱骗别人输入wifi密码）</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757621939021.png" alt="在这里插入图片描述"></p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757621449619.png" alt="在这里插入图片描述"></p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757618582717.png" alt="在这里插入图片描述"></p>
+<p>这就是刚才的握手包</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757618092015.png" alt="在这里插入图片描述"></p>
+<p>12.跟着绿色选择就可以了，其他为备用方法</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757617504613.png" alt="在这里插入图片描述"></p>
+<p>13.跟着选择</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-16475761566799.png" alt="在这里插入图片描述"></p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-164757616710911.png" alt="在这里插入图片描述"></p>
+<p>建议选择中文，除非wifi某个人英语不错</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-16475761461937.png" alt="在这里插入图片描述"></p>
+<p>14.我手机的wifi突然被断开，连接不上了，我得进入wifi界面去重新找以下WiFi，连接WiFi（始终不能连上以前的WiFi，但是有个同名WiFi，点击连接会跳出以下网站，123-5G是我另外一个wifi，可以忽略当作其他名字的wifi。可以看见123只有一个没有加锁的）<br>正常连接家里WiFi情况是这样的</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318142240026.png" alt="image-20220318142240026"></p>
+<p>被攻击后</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318142307080.png" alt="image-20220318142307080"></p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318120205311.png" alt="image-20220318120205311"></p>
+<p>监听中</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70-16475761154592.png" alt="在这里插入图片描述"></p>
+<p>当我一脸懵逼在手机上输入wifi密码后，可以看见右上角，密码出现并保存在蓝色目录中</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70.png" alt="在这里插入图片描述"></p>
+<p>当然也可以获取握手包后爆破，但是就看咱们字典厉害不了</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/18/%E6%95%B4%E8%9B%8A%E6%9C%8B%E5%8F%8B%E5%B0%8F%E7%AC%94%E8%AE%B0-1/" rel="next" title="整蛊朋友小笔记-1">
+      整蛊朋友小笔记-1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8kali-linux%E5%BE%97%E7%9F%A5%E9%9A%94%E5%A3%81%E6%88%BF%E9%97%B4WIFI%E5%AF%86%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">如何使用kali-linux得知隔壁房间WIFI密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%951%EF%BC%88%E4%BD%BF%E7%94%A8Aircrack-ng%EF%BC%89"><span class="nav-number">1.0.1.</span> <span class="nav-text">方法1（使用Aircrack-ng）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%88fluxion%EF%BC%89"><span class="nav-number">1.0.2.</span> <span class="nav-text">方法二（fluxion）</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">UknowJJ</p>
+  <div class="site-description" itemprop="description">人们不会总是很快理解自己当前某件事的价值，直到它变成回忆。🍂</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">UknowJJ</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

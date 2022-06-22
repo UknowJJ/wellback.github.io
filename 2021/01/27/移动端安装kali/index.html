@@ -1,41 +1,540 @@
-extends ../_partial/layout
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-block content
-  .container.post
-    section.article
-      .title= page.title
-      .date 写于#{moment(page.date).format(theme.date_format)}
-      .content!= page.content
-      if page.tags
-        .tags!= list_tags(page.tags, { show_count: false, class: 'tag', style: false, separator: '' })
+<link rel="stylesheet" href="/css/main.css">
 
-  .container
-    ul.nav
-      if page.prev
-        li 上一篇：
-          a(href=url_for(page.prev.path))= page.prev.title || '未命名'
-      if page.next
-        li 下一篇：
-          a(href=url_for(page.next.path))= page.next.title || '未命名'
 
-    if !index && config.disqus_shortname
-      .comments
-        #disqus_thread
-          noscript Please enable JavaScript to view the 
-            a(href="http://disqus.com/?ref_noscript") comments powered by Disqus
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-block js
-  != js('script/post')
-  if config.disqus_shortname
-    script
-      | var disqus_shortname = '!{config.disqus_shortname}';
-      if page.permalink
-        | var disqus_url = '!{page.permalink}';
-        | (function(){
-        |  var dsq = document.createElement('script');
-        |  dsq.type = 'text/javascript';
-        |  dsq.async = true;
-        |  dsq.src = '//' + disqus_shortname + '.disqus.com/!{page.comments ? 'embed.js' : 'count.hs'}';
-        |  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        | })();
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="（此文章从我自己CSDN账号上复制过来的） 首先，你需要的装备1.一部手机or一部平板（反正便于携带的）最好是安卓 （ios有一定限制，其实也可以，但是步骤长，需要海外ID） 2.你的装备需要root （华为最近出的产品就不要用了，貌似华为拒绝了root了，没root的话nmap都用不了了） 这就是我测试的几台机器  一、如果你是安卓5以下的版本,请看（第一章） 二、如果你是安卓5以上的版本,请看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端安装kali">
+<meta property="og:url" content="http://example.com/2021/01/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%AE%89%E8%A3%85kali/index.html">
+<meta property="og:site_name" content="JJhome">
+<meta property="og:description" content="（此文章从我自己CSDN账号上复制过来的） 首先，你需要的装备1.一部手机or一部平板（反正便于携带的）最好是安卓 （ios有一定限制，其实也可以，但是步骤长，需要海外ID） 2.你的装备需要root （华为最近出的产品就不要用了，貌似华为拒绝了root了，没root的话nmap都用不了了） 这就是我测试的几台机器  一、如果你是安卓5以下的版本,请看（第一章） 二、如果你是安卓5以上的版本,请看">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318144414062.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image012.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image014.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image018.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image020.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318144813159.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image026.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318144828988.png">
+<meta property="og:image" content="http://example.com/.com//...%20%20%20%20%20%20%20%20%20%20This%20is%20Uknow%E2%80%94JJ/A%E4%B8%80%E4%BA%9B%E5%B0%8F%E8%AE%B0%E5%BD%95/notes/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/image-20220318144920293.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image036.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image038.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image040.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318145259406.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image046.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image047.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image048.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image050.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image051.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image053.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image055.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image056.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image058.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image059.png">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image061.jpg">
+<meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image063.jpg">
+<meta property="article:published_time" content="2021-01-27T03:39:41.000Z">
+<meta property="article:modified_time" content="2021-01-27T03:39:41.000Z">
+<meta property="article:author" content="UknowJJ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318144414062.png">
+
+<link rel="canonical" href="http://example.com/2021/01/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%AE%89%E8%A3%85kali/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>移动端安装kali | JJhome</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JJhome</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%AE%89%E8%A3%85kali/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="UknowJJ">
+      <meta itemprop="description" content="人们不会总是很快理解自己当前某件事的价值，直到它变成回忆。🍂">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JJhome">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          移动端安装kali
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-27 11:39:41" itemprop="dateCreated datePublished" datetime="2021-01-27T11:39:41+08:00">2021-01-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>（此文章从我自己CSDN账号上复制过来的）</p>
+<h1 id="首先，你需要的装备"><a href="#首先，你需要的装备" class="headerlink" title="首先，你需要的装备"></a>首先，你需要的装备</h1><p><strong>1.一部手机or一部平板（反正便于携带的）最好是安卓</strong></p>
+<p>（ios有一定限制，其实也可以，但是步骤长，需要海外ID）</p>
+<p><strong>2.你的装备需要root</strong></p>
+<p>（华为最近出的产品就不要用了，貌似华为拒绝了root了，没root的话nmap都用不了了）</p>
+<p>这就是我测试的几台机器</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318144414062.png" alt="image-20220318144414062"></p>
+<p>一、<strong>如果你是安卓5以下的版本,请看（第一章）</strong></p>
+<p>二、<strong>如果你是安卓5以上的版本,请看（第二章）</strong></p>
+<p>安卓5以上，且可以root的是最舒服的了，简单，步骤少，可惜我无缘，昨天耗费五个小时才发现是因为我没root权限被限制了，我以为是各种配置文件出错挨着改</p>
+<p>三、<strong>如果你是IOS系统请看（第三章）</strong></p>
+<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><p><strong>准备工作</strong></p>
+<p>下载下列软件安装在手机上（直接百度既有）：</p>
+<p>\1. Linux deploy               系统支撑软件</p>
+<p>（下载的只要你手机可以安装就可以，因为你可能安卓版本过低有的不能安装，多尝试下载几个，只要可以用就可以） </p>
+<p>\2. Busy Box                 支撑软件</p>
+<p>\3. ConnectBox 或者 IJuiceSSH（我用的这个）  手机端SSH连接软件</p>
+<h2 id="BusyBox"><a href="#BusyBox" class="headerlink" title="BusyBox"></a><strong>BusyBox</strong></h2><p>安装完毕后，运行Busy Box，看到如下界面：</p>
+<p>按照顺序做，先点击右上角三个点，按照图2</p>
+<p>![img](E:...          This is Uknow—JJ\A一些小记录\notes\博客图片\clip_image010.png)<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image012.png" alt="img"></p>
+<p>在设置界面中还可以设置其他参数，看个人喜好，但注意不要修改安装路径，如非要修改，则需要记住修改后的路径，后续步骤需要使用。</p>
+<p>如果你下载的是pro，也可以，我安装好是这样的（我就是这样的）</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image014.jpg" alt="img"></p>
+<h2 id="Linux-deploy"><a href="#Linux-deploy" class="headerlink" title="Linux deploy"></a>Linux deploy</h2><p><em>（当你搭建好了，你就是用下一个软件用本地IP对这个软件进行本地连接，当然，你电脑也可以连接你手机，直接看你手机IP，反之，你手机也可以连接电脑搭建的SSH服务）</em></p>
+<p>运行完毕Busy Box的部分后，运行Linux deploy。</p>
+<p>点击左图左上角部分，选择设置</p>
+<p>![img](E:...          This is Uknow—JJ\A一些小记录\notes\博客图片\clip_image016.png)<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image018.png" alt="img"></p>
+<p>在设置界面中找到PATH变量，赋予其值 &#x2F;system&#x2F;xbin</p>
+<p>注意这是Busy Box的安装路径，如果前面在Busy Box有修改默认安装路径的话，就要填写修改后的路径。</p>
+<p>设置界面其余部分看个人喜好设置，建议开启锁定Wifi功能。</p>
+<p>接着退回主界面，点击左图右下角部分。</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image020.png" alt="img"></p>
+<p>点击后看到如上界面，对Linux系统安装信息进行配置。</p>
+<p>发行版看个人喜好选择（我选择是kali）</p>
+<p>架构需要根据手机硬件选择，一般会默认选择好匹配的选项，所以建议默认选项</p>
+<p>源地址是指Linux系统文件下载源的网络地址，默认是发行版的国外官方源，网速堪忧，建议换上国内源，（建议和我一样，阿里云的）</p>
+<p>该勾选的就是下面这些，勾选上</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318144813159.png" alt="image-20220318144813159"></p>
+<p>·    安装路径是Linux系统的安装路径，如要安装在手机自带的存储空间中，则在路径开头加上${ENV_DIR}，这代表的是存储空间根目录。如要安装在sdcard中，则加上${EXTERNAL_STORAGE}。</p>
+<p>·    文件系统推荐ext4，但保留默认也可以。</p>
+<p>·    用户名和密码自定义，本地、远程连接该系统用。</p>
+<p>·    DNS如需自定义就自行输入，否则保留默认</p>
+<ul>
+<li>本地化即设置系统语言，简体中文选择zh_CN.UTF-8</li>
+<li>挂载功能可让Linux系统访问手机上的文件</li>
+<li>挂载列表中添加访问手机内容的目录，&#x2F;sdcard:sdcard为手机自带存储空间根目录，&#x2F;storage&#x2F;sdcard1为sd卡根目录。</li>
+</ul>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image026.jpg" alt="img"></p>
+<p>退出系统设置界面，点击主界面右上角，选择安装。</p>
+<p>等待程序自行安装Linux系统，时间不定，看到&lt;&lt;&lt;deploy则安装完毕。如果中间没有报错则安装成功。</p>
+<p><strong>注意：安装完毕后要先点击停止按钮，再按启动按钮</strong></p>
+<h2 id="IJuiceSSH-（ConnectBot同理）"><a href="#IJuiceSSH-（ConnectBot同理）" class="headerlink" title="IJuiceSSH****（ConnectBot同理）"></a><strong>IJuiceSSH****（ConnectBot</strong>同理<strong>）</strong></h2><p>启动后运行IJuiceSSH，点击主界面</p>
+<p>\1. 连接，再点击其中右下角的加号</p>
+<p>\2. 输入昵称，root（之前linuxdeploy里面配置的用户名），地址localhost</p>
+<p>干脆看我图就好了，填好了点勾勾，然后连接，会提示什么什么密匙，确定就OK，输入密码，是之前linuxdeploy里面配置的密码，出现下面就登陆成功，如果没有，就看linuxdeploy是否开启服务（直接看命令里面哪一行出现了fail，出错了就改）</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318144828988.png" alt="image-20220318144828988"></p>
+<p><img src="/.com//...%20%20%20%20%20%20%20%20%20%20This%20is%20Uknow%E2%80%94JJ/A%E4%B8%80%E4%BA%9B%E5%B0%8F%E8%AE%B0%E5%BD%95/notes/%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87/image-20220318144920293.png" alt="image-20220318144920293"></p>
+<p>apt-get update 执行一下，更新一下源</p>
+<p>apt-get install nmap 我下载了一个nmap试了一下是否成功拥有使用工具的权限，答案是可以的，试了好多办法终于成功了（接下来几个就是掉坑教学了，但是只要按我说的做方法可行）</p>
+<h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><p>安卓5以上，且可以root的是最舒服的了，</p>
+<p>termux可以直接百度搜步骤，也许比我还详细更适合你，方法也很多，这个坑不是很多，简单</p>
+<p><strong>准备工作</strong></p>
+<p>下载下列软件安装在手机上（直接百度既有）：</p>
+<p>1.首先先下载Termux  打开就是一个黑乎乎的代码执行页面</p>
+<p>2.接着跟着我执行代码（复制粘贴就可以了，幸福吧，如果是PDF不能复制或者你截图识别文字出来就可以了），</p>
+<p>（下面我讲解的是atilo安装kali，其实也有其他办法，我也试过，都一样，如toolss，如果你使用这个安装也可以，只要能安装起就行了）</p>
+<p>3.差点忘了！你得有python环境才能运行安装的步骤，分别先后执行下面两个代码：</p>
+<p><code>pkg update    pkg install python3</code>  </p>
+<p>如果pkg不行就得换源 <code>apt edit-source</code>，把新的源加进去（百度阿里云，中科大的源，复制粘贴进去然后ESC后输入：wq回车既可以保存，再重新执行，或者用<code>wget，git</code>等命令下载python压缩包再解压,反正可以百度）</p>
+<p><strong>步骤</strong></p>
+<p>1.获取权限<br> <code>pkg install proot`  `termux-chroot</code></p>
+<p>2.安装git并获取atilo（toolss一样的）<br> &#96;&#96;&#96;pkg install git&#96;<br> git clone <a target="_blank" rel="noopener" href="https://github.com/YadominJinta/atilo%60%60">https://github.com/YadominJinta/atilo``</a></p>
+<p>3.进去atilo下并获取权限<br> <code>cd atilo/         （到此目录）</code><br> <code>chmod +x atilo</code></p>
+<p>4.安装kali<br> <code>./atilo install kali  (必须有python环境)</code></p>
+<p>此处有个坑，可能报错说你缺少reuqests 或者 bs4 等 直接 pip install requests(你缺少的)，直到它不报错，因为这是个新搭建的，肯定缺少很多文件，缺少就补上，这就是个慢慢挖坑填坑的过程！！！！！！！！！！</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image036.jpg" alt="img"></p>
+<p>成功图如上</p>
+<p>5.接着cd到你的atilo文件夹下面</p>
+<p><code>./atilo run kali （或者startkali）</code> 执行一下启动kali，以后每次进入kali都需要这个步骤</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image038.jpg" alt="img"></p>
+<p>上图即为成功启动，进入kali 我是保存在Python-3-7.1目录下面的</p>
+<p>因为我之前为了避坑，移过去的，结果发现是缺少环境，所以大家的直接下载</p>
+<p>（后来为了验证我也直接在根目录下下载了一个也可以使用，红箭头画出来）</p>
+<p>的应该直接执行cd atilo开始的就看了。</p>
+<p>进入了kali，至于能干什么，就不多说了</p>
+<p>例：metasploit</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image040.jpg" alt="img"></p>
+<h1 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h1><p>Ios的，最脑袋疼的</p>
+<p>两个办法，都恼火，简单说说思路吧</p>
+<p>方法一：</p>
+<p><strong>准备工作</strong></p>
+<p><strong>1****，安装应用TestFlight</strong></p>
+<p>·    <a target="_blank" rel="noopener" href="http://testflight.apple.com/join/97i7KM8O">testflight.apple.com&#x2F;join&#x2F;97i7KM8O</a> 浏览器访问链接，开始测试。</p>
+<h1 id="2，安装-iSH-shell"><a href="#2，安装-iSH-shell" class="headerlink" title="2，安装 iSH shell"></a>2，安装 iSH shell</h1><h1 id><a href="#" class="headerlink" title></a><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318145259406.png" alt="image-20220318145259406"></h1><h1 id="3，运行-iSH-shell"><a href="#3，运行-iSH-shell" class="headerlink" title="3，运行 iSH shell"></a>3，运行 iSH shell</h1><p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image046.png" alt="在这里插入图片描述"></p>
+<p>它什么都没有，所以需要安装基本git、wget、vim、nano、tar、zip、less等</p>
+<p>&#96;&#96;&#96;.apt install git<code>  </code>.apt install wget<code>  </code>.apt install vim<code>   </code>.apt install nano<code>  </code>.apt install tar&#96;<br> .apt install less&#96;&#96;</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image047.jpg" alt="img"><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image048.jpg" alt="img"></p>
+<h2 id="配置iSH"><a href="#配置iSH" class="headerlink" title="配置iSH"></a>配置iSH</h2><p>（1） 更新国内源</p>
+<p>vi &#x2F;etc&#x2F;apk&#x2F;repositories</p>
+<p>采用国内阿里云的源，将其文件内容修改为：</p>
+<p># <a target="_blank" rel="noopener" href="http://dl-cdn.alpinelinux.org/alpine/v3.11/main/">http://dl-cdn.alpinelinux.org/alpine/v3.11/main/</a></p>
+<p># <a target="_blank" rel="noopener" href="http://dl-cdn.alpinelinux.org/alpine/v3.11/community/">http://dl-cdn.alpinelinux.org/alpine/v3.11/community/</a></p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/alpine/v3.11/main/">https://mirrors.aliyun.com/alpine/v3.11/main/</a></p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/alpine/v3.11/community/">https://mirrors.aliyun.com/alpine/v3.11/community/</a></p>
+<p>编辑好后按ESC退出，输入<code>:wq</code>保存修改并退出</p>
+<p>（2）更新源：</p>
+<p>apk update</p>
+<p>apk upgrade</p>
+<p>然后你可以开始慢慢配置你的武器库，但是会缺少各种文件，就得慢慢花时间了。</p>
+<p>但是这个软件简单做些linux操作还是可以的，至于渗透，那就是花功夫了，我被他磨平了棱角</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image050.jpg" alt="img"></p>
+<h2 id="方法二（不介意IOS14，utm性能下降）"><a href="#方法二（不介意IOS14，utm性能下降）" class="headerlink" title="方法二（不介意IOS14，utm性能下降）"></a>方法二（不介意IOS14，utm性能下降）</h2><p><strong>iOS 11～iOS 13.3</strong></p>
+<p>安装一个软件叫做<strong>UTM</strong> <strong>我在youtube看的教学视频，其他办法可以搜搜其他的，我不知道可以不</strong></p>
+<p>首款 iOS 虚拟机 UTM - 免越狱在 iPhone iPad 上安装 Windows &#x2F; Linux &#x2F; 安卓系统</p>
+<p>（虚拟机！！！！！！说明了什么，他是一个手机版的VMware！！！！！！！！说明了我只需要把电脑上的镜像拖进去就可以直接开始了，说明了你安装windows系统你可以在上面玩PC游戏）</p>
+<p>对于国人来说其实最大的难题就是安装UTM</p>
+<p>不过安装过程属实脑血栓，准备好梯子和新海外的苹果ID吧</p>
+<p>首先，安装它</p>
+<p>\1. 在你的电脑上安装第三方应用商店Altstore</p>
+<p>（1. 通过电脑端给你手机安装手机端的Altstore</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image051.png" alt="img"></p>
+<p>（2. 在里面添加UTM软件源</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image053.jpg" alt="img">）</p>
+<p>（3. 添加后就可以看见UTM的下载按钮了</p>
+<p>\2. 但是接下来有几个门槛</p>
+<p>（1. 首先你的APPLE ID 需要开启双重验证，不是两步验证</p>
+<p>（2. 生成开发者证书来签名此软件）</p>
+<p>还有另一个方法xcode，用苹果的系统来签名，我没MACbook就不能搞了</p>
+<p>3.安装好就可以打开</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image055.jpg" alt="img"></p>
+<p>打开点击右上角+配置文件以及镜像，按照图就可以了</p>
+<p>4.跟着图来  ，点击 path这个，到达图2</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image056.png" alt="img"><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image058.jpg" alt="img"></p>
+<p>点击右上角+选择镜像, 这里添加的是arch linux</p>
+<p>镜像，大家安装kali的就添加kali镜像即可</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image059.png" alt="img"></p>
+<p>然后确定后返回主页</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image061.jpg" alt="img"></p>
+<p>点击运行，开始配置系统</p>
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/clip_image063.jpg" alt="img"></p>
+<p>终于写完了，大概，能在手机上弄得就只有这些方法了，我只查到了这些，可能还有其他的办法，大家可以自己再看看，总而言之，挺恼火的，我现在只有一个设备是正常可以搭建起kali并使用工具的</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/18/%E6%95%B4%E8%9B%8A%E6%9C%8B%E5%8F%8B%E5%B0%8F%E7%AC%94%E8%AE%B0-1/" rel="prev" title="整蛊朋友小笔记-1">
+      <i class="fa fa-chevron-left"></i> 整蛊朋友小笔记-1
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/18/Linux%E6%90%AD%E5%BB%BAnfs%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%8D%E5%8A%A1/" rel="next" title="Linux搭建nfs共享文件夹服务">
+      Linux搭建nfs共享文件夹服务 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A6%96%E5%85%88%EF%BC%8C%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9A%84%E8%A3%85%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">首先，你需要的装备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="nav-number">2.</span> <span class="nav-text">第一章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BusyBox"><span class="nav-number">2.1.</span> <span class="nav-text">BusyBox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-deploy"><span class="nav-number">2.2.</span> <span class="nav-text">Linux deploy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IJuiceSSH-%EF%BC%88ConnectBot%E5%90%8C%E7%90%86%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">IJuiceSSH****（ConnectBot同理）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="nav-number">3.</span> <span class="nav-text">第二章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="nav-number">4.</span> <span class="nav-text">第三章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2%EF%BC%8C%E5%AE%89%E8%A3%85-iSH-shell"><span class="nav-number">5.</span> <span class="nav-text">2，安装 iSH shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%EF%BC%8C%E8%BF%90%E8%A1%8C-iSH-shell"><span class="nav-number">7.</span> <span class="nav-text">3，运行 iSH shell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEiSH"><span class="nav-number">7.1.</span> <span class="nav-text">配置iSH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%88%E4%B8%8D%E4%BB%8B%E6%84%8FIOS14%EF%BC%8Cutm%E6%80%A7%E8%83%BD%E4%B8%8B%E9%99%8D%EF%BC%89"><span class="nav-number">7.2.</span> <span class="nav-text">方法二（不介意IOS14，utm性能下降）</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">UknowJJ</p>
+  <div class="site-description" itemprop="description">人们不会总是很快理解自己当前某件事的价值，直到它变成回忆。🍂</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">UknowJJ</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
