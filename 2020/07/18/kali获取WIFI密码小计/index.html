@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="如何使用kali-linux得知隔壁房间WIFI密码下面主要介绍aircrack-ng,fluxion两个方法。还有wifite也挺好用，当然还有很多方法 （此文章从我自己CSDN账号上复制过来的） 注意:1.新手上路，大佬们多多指教，嘻嘻2.此贴仅为教程贴，拿自家WIFI测试，禁止使用此技术干违法or伤害他人行为的事情！！！！ 工具准备kali-linux无线网卡（有监听功能的），我用的是Ral">
+  <meta name="description" content="如何使用kali-linux得知隔壁房间WIFI密码下面主要介绍aircrack-ng,fluxion两个方法。还有wifite也挺好用，当然还有很多方法 （此文章从我自己CSDN账号上复制过来的） 工具准备kali-linux无线网卡（有监听功能的），我用的是Ralink802.11 n可以直接某宝搜索linux免驱网卡">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kali获取WIFI密码小计">
 <meta property="og:url" content="http://什么时候才能去旅行.com/2020/07/18/kali%E8%8E%B7%E5%8F%96WIFI%E5%AF%86%E7%A0%81%E5%B0%8F%E8%AE%A1/index.html">
 <meta property="og:site_name" content="HI">
-<meta property="og:description" content="如何使用kali-linux得知隔壁房间WIFI密码下面主要介绍aircrack-ng,fluxion两个方法。还有wifite也挺好用，当然还有很多方法 （此文章从我自己CSDN账号上复制过来的） 注意:1.新手上路，大佬们多多指教，嘻嘻2.此贴仅为教程贴，拿自家WIFI测试，禁止使用此技术干违法or伤害他人行为的事情！！！！ 工具准备kali-linux无线网卡（有监听功能的），我用的是Ral">
+<meta property="og:description" content="如何使用kali-linux得知隔壁房间WIFI密码下面主要介绍aircrack-ng,fluxion两个方法。还有wifite也挺好用，当然还有很多方法 （此文章从我自己CSDN账号上复制过来的） 工具准备kali-linux无线网卡（有监听功能的），我用的是Ralink802.11 n可以直接某宝搜索linux免驱网卡">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318122203450.png">
 <meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318141749160.png">
@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80ODQ2NTEwNQ==,size_16,color_FFFFFF,t_70.png">
 <meta property="article:published_time" content="2020-07-18T04:00:47.000Z">
 <meta property="article:modified_time" content="2020-07-18T04:00:47.000Z">
-<meta property="article:author" content="UknowJJ">
+<meta property="article:author" content="人们不会总是很快明白当前所做的事，直到它变成回忆~🍂">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318122203450.png">
   
@@ -84,40 +84,26 @@
       
 
 
-<div class="overlay" style="background: #4d4d4d;"></div>
+<div class="overlay" style="background: #4d4d4d;background: url('/img/biubiubiu.gif') no-repeat ;"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/head.png" class="js-avatar">
 		</a>
 		<hgroup>
-			<h1 class="header-author"><a href="/">UknowJJ</a></h1>
+			<h1 class="header-author"><a href="/">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</a></h1>
 		</hgroup>
 		
 
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/" target="_blank">主页</a></li>
-			
-				<li><a href="/null" target="_blank">技术笔记</a></li>
-			
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/" target="_blank">随笔</a></li>
-			
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
 			
 				
-					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-				
-			
-				
-					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-				
-			
-				
-					<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">文章目录</a>
 				
 			
 		</nav>
@@ -125,23 +111,8 @@
 			<div class="social">
 				
 					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="gitee" href="#" 
-												title="码云" target="_blank"><i class="icon-gitee"></i></a>
-					
-				
-					
-						<a class="jianshu" href="#" 
-												title="简书" target="_blank"><i class="icon-jianshu"></i></a>
+						<a class="weixin" href="/wechat/U_knowJJ" 
+												title="微信" target="_blank"><i class="icon-weixin"></i></a>
 					
 				
 			</div>
@@ -152,12 +123,6 @@
 
     </div>
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
-      
-      
-      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em;" 
-        href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank">
-        <img src="/img/forkme.png"
-          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
       
       
 <nav id="mobile-nav">
@@ -173,16 +138,10 @@
 				</a>
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">UknowJJ</h1>
+			  <h1 class="header-author js-header-author">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</h1>
 			</hgroup>
 			
 			
-			
-				
-			
-				
-			
-				
 			
 			
 			
@@ -190,38 +149,17 @@
 				<div class="social">
 					
 						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="gitee" target="_blank" 
-							href="#" title="码云"><i class="icon-gitee"></i></a>
-						
-					
-						
-						<a class="jianshu" target="_blank" 
-							href="#" title="简书"><i class="icon-jianshu"></i></a>
+						<a class="weixin" target="_blank" 
+							href="/wechat/U_knowJJ" title="微信"><i class="icon-weixin"></i></a>
 						
 					
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/null">技术笔记</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
-		        
 				</ul>
 			</nav>
 		</header>				
@@ -291,8 +229,9 @@
     
     <h1 id="如何使用kali-linux得知隔壁房间WIFI密码"><a href="#如何使用kali-linux得知隔壁房间WIFI密码" class="headerlink" title="如何使用kali-linux得知隔壁房间WIFI密码"></a>如何使用kali-linux得知隔壁房间WIFI密码</h1><p><strong>下面主要介绍aircrack-ng,fluxion两个方法。还有wifite也挺好用，当然还有很多方法</strong></p>
 <p>（此文章从我自己CSDN账号上复制过来的）</p>
-<p>注意:<br>1.新手上路，大佬们多多指教，嘻嘻<br>2.此贴仅为教程贴，拿自家WIFI测试，禁止使用此技术干违法or伤害他人行为的事情！！！！</p>
 <p>工具准备<br><code>kali-linux</code><br><code>无线网卡（有监听功能的），我用的是Ralink802.11 n</code><br><code>可以直接某宝搜索linux免驱网卡</code></p>
+<span id="more"></span>
+<p>1.新手上路，大佬们多多指教，嘻嘻<br>2.此贴仅为教程贴，拿自家WIFI测试，禁止使用此技术干违法or伤害他人行为的事情！！！！</p>
 <p>步骤：<br>1.插入网卡选择把网卡接入虚拟机</p>
 <p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318122203450.png" alt="image-20220318122203450"></p>
 <p>2.在命令窗口输入ifconfig查看网卡是否启动，如果有wlan0则为启动成功<br>（有的不叫wlan0，可以搜索更改教程我就不演示了）</p>
@@ -349,49 +288,7 @@
     
 
     
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
 
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          UknowJJ
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://什么时候才能去旅行.com/2020/07/18/kali获取WIFI密码小计/" title="kali获取WIFI密码小计" target="_blank">http://什么时候才能去旅行.com/2020/07/18/kali获取WIFI密码小计/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
     
 
   </div>
@@ -512,7 +409,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019-2022 <a href="http://什么时候才能去旅行.com/" target="_blank">UknowJJ</a>
+    		&copy; 2019-2022 <a href="http://什么时候才能去旅行.com/" target="_blank">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</a>
     	</div>
       	<div class="footer-right">
 			
@@ -567,10 +464,10 @@
   var titleTime;
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
-      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+      document.title = "去哪~ " + originTitle;
       clearTimeout(titleTime);
     } else {
-      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+      document.title = "嘿，近来可好~" + originTitle;
       titleTime = setTimeout(function () {
         document.title = originTitle;
       }, 2000);
@@ -588,29 +485,13 @@
       
       
     
-      
-      
-      
-    
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 100%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">文章目录</a></li>
       
         
     </ul>
@@ -674,29 +555,7 @@
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="https://uknowjj.gitee.io/" target="_blank" 
-                class="search-title" title="交个朋友吧，咱们都很无聊">
-                
-                  <i class="icon-link icon"></i>
-                
-                技术笔记
-              </a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
-    
-    	<section class="tools-section tools-section-me" q-show="aboutme">
-        
-    	</section>
     
   </div>
   
@@ -803,7 +662,7 @@
 <script type="text/javascript" src="/plugins/activate-power-mode/activate-power-mode.js"></script>
 <script>
   POWERMODE.colorful = true; // make power mode colorful
-  POWERMODE.shake = false; // turn off shake
+  POWERMODE.shake = true; // turn off shake
   document.body.addEventListener('input', POWERMODE);
 </script>
 

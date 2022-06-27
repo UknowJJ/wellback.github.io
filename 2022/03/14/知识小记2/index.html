@@ -10,16 +10,16 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="网络安全知识小计-2ssrf 利用方法ssrf服务端请求伪造，利用web端攻击内网 常用利用协议 http:&#x2F;&#x2F;：探测内网主机存活、端口开放情况  gopher:&#x2F;&#x2F;：发送GET或POST请求；攻击内网应用，如FastCGI、Redis  dict:&#x2F;&#x2F;：泄露安装软件版本信息，查看端口，操作内网redis访问等  file:&#x2F;&#x2F;：读取本地文件  何处可能存在SSRF漏洞能够对外发起网络请求的地方，">
+  <meta name="description" content="网络安全知识小计-2ssrf 利用方法ssrf服务端请求伪造，利用web端攻击内网 常用利用协议 1234567http:&#x2F;&#x2F;：探测内网主机存活、端口开放情况gopher:&#x2F;&#x2F;：发送GET或POST请求；攻击内网应用，如FastCGI、Redisdict:&#x2F;&#x2F;：泄露安装软件版本信息，查看端口，操作内网redis访问等file:&#x2F;&#x2F;：读取本地文件  何处可能存在SSRF漏洞">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知识小记2">
 <meta property="og:url" content="http://什么时候才能去旅行.com/2022/03/14/%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%B02/index.html">
 <meta property="og:site_name" content="HI">
-<meta property="og:description" content="网络安全知识小计-2ssrf 利用方法ssrf服务端请求伪造，利用web端攻击内网 常用利用协议 http:&#x2F;&#x2F;：探测内网主机存活、端口开放情况  gopher:&#x2F;&#x2F;：发送GET或POST请求；攻击内网应用，如FastCGI、Redis  dict:&#x2F;&#x2F;：泄露安装软件版本信息，查看端口，操作内网redis访问等  file:&#x2F;&#x2F;：读取本地文件  何处可能存在SSRF漏洞能够对外发起网络请求的地方，">
+<meta property="og:description" content="网络安全知识小计-2ssrf 利用方法ssrf服务端请求伪造，利用web端攻击内网 常用利用协议 1234567http:&#x2F;&#x2F;：探测内网主机存活、端口开放情况gopher:&#x2F;&#x2F;：发送GET或POST请求；攻击内网应用，如FastCGI、Redisdict:&#x2F;&#x2F;：泄露安装软件版本信息，查看端口，操作内网redis访问等file:&#x2F;&#x2F;：读取本地文件  何处可能存在SSRF漏洞">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-14T04:39:39.000Z">
 <meta property="article:modified_time" content="2022-03-14T04:39:39.000Z">
-<meta property="article:author" content="UknowJJ">
+<meta property="article:author" content="人们不会总是很快明白当前所做的事，直到它变成回忆~🍂">
 <meta name="twitter:card" content="summary">
   
   
@@ -57,40 +57,26 @@
       
 
 
-<div class="overlay" style="background: #4d4d4d;"></div>
+<div class="overlay" style="background: #4d4d4d;background: url('/img/biubiubiu.gif') no-repeat ;"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/head.png" class="js-avatar">
 		</a>
 		<hgroup>
-			<h1 class="header-author"><a href="/">UknowJJ</a></h1>
+			<h1 class="header-author"><a href="/">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</a></h1>
 		</hgroup>
 		
 
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/" target="_blank">主页</a></li>
-			
-				<li><a href="/null" target="_blank">技术笔记</a></li>
-			
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/" target="_blank">随笔</a></li>
-			
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
 			
 				
-					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-				
-			
-				
-					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-				
-			
-				
-					<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">文章目录</a>
 				
 			
 		</nav>
@@ -98,23 +84,8 @@
 			<div class="social">
 				
 					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="gitee" href="#" 
-												title="码云" target="_blank"><i class="icon-gitee"></i></a>
-					
-				
-					
-						<a class="jianshu" href="#" 
-												title="简书" target="_blank"><i class="icon-jianshu"></i></a>
+						<a class="weixin" href="/wechat/U_knowJJ" 
+												title="微信" target="_blank"><i class="icon-weixin"></i></a>
 					
 				
 			</div>
@@ -125,12 +96,6 @@
 
     </div>
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
-      
-      
-      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em;" 
-        href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank">
-        <img src="/img/forkme.png"
-          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
       
       
 <nav id="mobile-nav">
@@ -146,16 +111,10 @@
 				</a>
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">UknowJJ</h1>
+			  <h1 class="header-author js-header-author">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</h1>
 			</hgroup>
 			
 			
-			
-				
-			
-				
-			
-				
 			
 			
 			
@@ -163,38 +122,17 @@
 				<div class="social">
 					
 						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="gitee" target="_blank" 
-							href="#" title="码云"><i class="icon-gitee"></i></a>
-						
-					
-						
-						<a class="jianshu" target="_blank" 
-							href="#" title="简书"><i class="icon-jianshu"></i></a>
+						<a class="weixin" target="_blank" 
+							href="/wechat/U_knowJJ" title="微信"><i class="icon-weixin"></i></a>
 						
 					
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/null">技术笔记</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
-		        
 				</ul>
 			</nav>
 		</header>				
@@ -242,7 +180,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">639字</span>
+      <span class="post-count">634字</span>
     </span>
   </span>
 
@@ -264,57 +202,37 @@
     
     <h1 id="网络安全知识小计-2"><a href="#网络安全知识小计-2" class="headerlink" title="网络安全知识小计-2"></a>网络安全知识小计-2</h1><h3 id="ssrf-利用方法"><a href="#ssrf-利用方法" class="headerlink" title="ssrf 利用方法"></a>ssrf 利用方法</h3><p><strong>ssrf服务端请求伪造，利用web端攻击内网</strong></p>
 <p><strong>常用利用协议</strong></p>
-<pre><code>http://：探测内网主机存活、端口开放情况
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">http://：探测内网主机存活、端口开放情况</span><br><span class="line"></span><br><span class="line">gopher://：发送GET或POST请求；攻击内网应用，如FastCGI、Redis</span><br><span class="line"></span><br><span class="line">dict://：泄露安装软件版本信息，查看端口，操作内网redis访问等</span><br><span class="line"></span><br><span class="line">file://：读取本地文件</span><br></pre></td></tr></table></figure>
 
-gopher://：发送GET或POST请求；攻击内网应用，如FastCGI、Redis
+<h3 id="何处可能存在SSRF漏洞"><a href="#何处可能存在SSRF漏洞" class="headerlink" title="何处可能存在SSRF漏洞"></a>何处可能存在SSRF漏洞</h3><span id="more"></span>
 
-dict://：泄露安装软件版本信息，查看端口，操作内网redis访问等
-
-file://：读取本地文件
-</code></pre>
-<h3 id="何处可能存在SSRF漏洞"><a href="#何处可能存在SSRF漏洞" class="headerlink" title="何处可能存在SSRF漏洞"></a>何处可能存在SSRF漏洞</h3><p>能够对外发起网络请求的地方，就可能存在SSRF漏洞<br>从远程服务器请求资源(Upload from URL，Import &amp; Export RSS Feed)<br>数据库内置功能(Oracle、 MongoDB、MSSQL、 Postgres、 CouchDB)<br>Webmail收取其他邮箱邮件(POP3、 IMAP、SMTP)<br>文件处理、编码处理、属性信息处理(ffmpeg、 ImageMagic、 DOCX、 PDF、 XML)</p>
+<p>能够对外发起网络请求的地方，就可能存在SSRF漏洞<br>从远程服务器请求资源(Upload from URL，Import &amp; Export RSS Feed)<br>数据库内置功能(Oracle、 MongoDB、MSSQL、 Postgres、 CouchDB)<br>Webmail收取其他邮箱邮件(POP3、 IMAP、SMTP)<br>文件处理、编码处理、属性信息处理(ffmpeg、 ImageMagic、 DOCX、 PDF、 XML)</p>
 <h3 id="如何突破延时盲注的时间"><a href="#如何突破延时盲注的时间" class="headerlink" title="如何突破延时盲注的时间"></a>如何突破延时盲注的时间</h3><p>利用<strong>dns注入</strong>快速获取数据，使用sqlmap结合dnslog</p>
 <h3 id="内网确定域控"><a href="#内网确定域控" class="headerlink" title="内网确定域控"></a>内网确定域控</h3><p>判断是否在域中</p>
-<pre><code>ipconfig /all
-systeminfo
-net config workstation
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all</span><br><span class="line">systeminfo</span><br><span class="line">net config workstation</span><br></pre></td></tr></table></figure>
+
 <p>定位域控</p>
-<pre><code>nslookup test.com
-nslookup -type=SRV _ldap._tcp
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nslookup test.com</span><br><span class="line">nslookup -type=SRV _ldap._tcp</span><br></pre></td></tr></table></figure>
+
 <h3 id="文件上传绕过"><a href="#文件上传绕过" class="headerlink" title="文件上传绕过"></a>文件上传绕过</h3><p>1.对文件的内容，数据。数据包进行处理</p>
 <p>2.通过替换大小写来进行绕过</p>
 <p>3.通过删减空格来进行绕过</p>
 <p>4.通过字符串拼接绕过</p>
-<pre><code>看Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;yjh3.php&quot;
-将 form-data 修改为   f+orm-data
-将 form-data 修改为   form-d+ata
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">看Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;yjh3.php&quot;</span><br><span class="line">将 form-data 修改为   f+orm-data</span><br><span class="line">将 form-data 修改为   form-d+ata</span><br></pre></td></tr></table></figure>
+
 <p>5.双文件上传绕过</p>
 <p>6.HTTP header 属性值绕过</p>
-<pre><code>Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;yjh.php&quot;
-我们通过替换form-data 为*来绕过
-Content-Disposition: *; name=&quot;file&quot;; filename=&quot;yjh.php&quot;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;yjh.php&quot;</span><br><span class="line">我们通过替换form-data 为*来绕过</span><br><span class="line">Content-Disposition: *; name=&quot;file&quot;; filename=&quot;yjh.php&quot;</span><br></pre></td></tr></table></figure>
+
 <p>7.HTTP header 属性名称绕过</p>
-<pre><code>源代码:
-Content-Disposition: form-data; name=&quot;image&quot;; filename=&quot;085733uykwusqcs8vw8wky.png&quot;Content-Type: image/png
-绕过内容如下：
-Content-Disposition: form-data; name=&quot;image&quot;; filename=&quot;085733uykwusqcs8vw8wky.png
-C.php&quot;
-删除掉ontent-Type: image/jpeg只留下c，将.php加c后面即可，但是要注意额，双引号要跟着c.php&quot;.
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">源代码:</span><br><span class="line">Content-Disposition: form-data; name=&quot;image&quot;; filename=&quot;085733uykwusqcs8vw8wky.png&quot;Content-Type: image/png</span><br><span class="line">绕过内容如下：</span><br><span class="line">Content-Disposition: form-data; name=&quot;image&quot;; filename=&quot;085733uykwusqcs8vw8wky.png</span><br><span class="line">C.php&quot;</span><br><span class="line">删除掉ontent-Type: image/jpeg只留下c，将.php加c后面即可，但是要注意额，双引号要跟着c.php&quot;.</span><br></pre></td></tr></table></figure>
+
 <p>8.等效替换绕过</p>
-<pre><code>原内容：
-Content-Type: multipart/form-data; boundary=---------------------------471463142114
-修改后:
-Content-Type: multipart/form-data; boundary =---------------------------471463142114
-boundary后面加入空格。
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">原内容：</span><br><span class="line">Content-Type: multipart/form-data; boundary=---------------------------471463142114</span><br><span class="line">修改后:</span><br><span class="line">Content-Type: multipart/form-data; boundary =---------------------------471463142114</span><br><span class="line">boundary后面加入空格。</span><br></pre></td></tr></table></figure>
+
 <p>9.修改编码绕过</p>
-<pre><code>使用UTF-16、Unicode、双URL编码等等
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用UTF-16、Unicode、双URL编码等等</span><br></pre></td></tr></table></figure>
+
 <h3 id="sqlmap-–os-shell原理"><a href="#sqlmap-–os-shell原理" class="headerlink" title="sqlmap –os-shell原理"></a>sqlmap –os-shell原理</h3><p>就是用<code>into outfile</code>函数将一个可以用来上传的php文件写到网站的根目录下，然后利用<code>tmpukjhb.php</code>上传了一个<code>tmpbezal.php</code>的文件，<code>tmpbezal.php</code>这个文件可以用来执行系统命令，并且将结果返回出来</p>
 <p><strong>os-shell的执行条件有三个</strong></p>
 <p>（1）网站必须是root权限</p>
@@ -324,49 +242,7 @@ boundary后面加入空格。
     
 
     
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
 
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          UknowJJ
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://什么时候才能去旅行.com/2022/03/14/知识小记2/" title="知识小记2" target="_blank">http://什么时候才能去旅行.com/2022/03/14/知识小记2/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
     
 
   </div>
@@ -492,7 +368,7 @@ boundary后面加入空格。
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019-2022 <a href="http://什么时候才能去旅行.com/" target="_blank">UknowJJ</a>
+    		&copy; 2019-2022 <a href="http://什么时候才能去旅行.com/" target="_blank">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</a>
     	</div>
       	<div class="footer-right">
 			
@@ -547,10 +423,10 @@ boundary后面加入空格。
   var titleTime;
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
-      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+      document.title = "去哪~ " + originTitle;
       clearTimeout(titleTime);
     } else {
-      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+      document.title = "嘿，近来可好~" + originTitle;
       titleTime = setTimeout(function () {
         document.title = originTitle;
       }, 2000);
@@ -568,29 +444,13 @@ boundary后面加入空格。
       
       
     
-      
-      
-      
-    
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 100%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">文章目录</a></li>
       
         
     </ul>
@@ -654,29 +514,7 @@ boundary后面加入空格。
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="https://uknowjj.gitee.io/" target="_blank" 
-                class="search-title" title="交个朋友吧，咱们都很无聊">
-                
-                  <i class="icon-link icon"></i>
-                
-                技术笔记
-              </a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
-    
-    	<section class="tools-section tools-section-me" q-show="aboutme">
-        
-    	</section>
     
   </div>
   
@@ -783,7 +621,7 @@ boundary后面加入空格。
 <script type="text/javascript" src="/plugins/activate-power-mode/activate-power-mode.js"></script>
 <script>
   POWERMODE.colorful = true; // make power mode colorful
-  POWERMODE.shake = false; // turn off shake
+  POWERMODE.shake = true; // turn off shake
   document.body.addEventListener('input', POWERMODE);
 </script>
 

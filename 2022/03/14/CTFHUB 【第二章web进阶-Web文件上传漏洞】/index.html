@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="先上题目源码&lt;?php header(&quot;Content-Type:text&#x2F;html; charset&#x3D;utf-8&quot;); &#x2F;&#x2F; 每5分钟会清除一次目录下上传的文件 require_once(&#39;pclzip.lib.php&#39;);  if(!$_FILES)&amp;#123;          echo &#39;  &lt;!DOCTYPE html&gt; &amp;l">
+  <meta name="description" content="先上题目源码如下↓">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTFHUB 【第二章web进阶-Web文件上传漏洞】">
 <meta property="og:url" content="http://什么时候才能去旅行.com/2022/03/14/CTFHUB%20%E3%80%90%E7%AC%AC%E4%BA%8C%E7%AB%A0web%E8%BF%9B%E9%98%B6-Web%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E3%80%91/index.html">
 <meta property="og:site_name" content="HI">
-<meta property="og:description" content="先上题目源码&lt;?php header(&quot;Content-Type:text&#x2F;html; charset&#x3D;utf-8&quot;); &#x2F;&#x2F; 每5分钟会清除一次目录下上传的文件 require_once(&#39;pclzip.lib.php&#39;);  if(!$_FILES)&amp;#123;          echo &#39;  &lt;!DOCTYPE html&gt; &amp;l">
+<meta property="og:description" content="先上题目源码如下↓">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/001.png">
 <meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/002.png">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/005.png">
 <meta property="article:published_time" content="2022-03-14T08:43:14.000Z">
 <meta property="article:modified_time" content="2022-03-14T08:43:14.000Z">
-<meta property="article:author" content="UknowJJ">
+<meta property="article:author" content="人们不会总是很快明白当前所做的事，直到它变成回忆~🍂">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/001.png">
   
@@ -63,40 +63,26 @@
       
 
 
-<div class="overlay" style="background: #4d4d4d;"></div>
+<div class="overlay" style="background: #4d4d4d;background: url('/img/biubiubiu.gif') no-repeat ;"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			<img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/head.png" class="js-avatar">
 		</a>
 		<hgroup>
-			<h1 class="header-author"><a href="/">UknowJJ</a></h1>
+			<h1 class="header-author"><a href="/">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</a></h1>
 		</hgroup>
 		
 
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/" target="_blank">主页</a></li>
-			
-				<li><a href="/null" target="_blank">技术笔记</a></li>
-			
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/" target="_blank">随笔</a></li>
-			
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
 			
 				
-					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-				
-			
-				
-					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-				
-			
-				
-					<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">文章目录</a>
 				
 			
 		</nav>
@@ -104,23 +90,8 @@
 			<div class="social">
 				
 					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="gitee" href="#" 
-												title="码云" target="_blank"><i class="icon-gitee"></i></a>
-					
-				
-					
-						<a class="jianshu" href="#" 
-												title="简书" target="_blank"><i class="icon-jianshu"></i></a>
+						<a class="weixin" href="/wechat/U_knowJJ" 
+												title="微信" target="_blank"><i class="icon-weixin"></i></a>
 					
 				
 			</div>
@@ -131,12 +102,6 @@
 
     </div>
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
-      
-      
-      <a class="forkMe" style="position:absolute;z-index:999;top:0;right:0.5em;" 
-        href="https://github.com/JoeyBling/hexo-theme-yilia-plus" target="_blank">
-        <img src="/img/forkme.png"
-          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
       
       
 <nav id="mobile-nav">
@@ -152,16 +117,10 @@
 				</a>
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">UknowJJ</h1>
+			  <h1 class="header-author js-header-author">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</h1>
 			</hgroup>
 			
 			
-			
-				
-			
-				
-			
-				
 			
 			
 			
@@ -169,38 +128,17 @@
 				<div class="social">
 					
 						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="gitee" target="_blank" 
-							href="#" title="码云"><i class="icon-gitee"></i></a>
-						
-					
-						
-						<a class="jianshu" target="_blank" 
-							href="#" title="简书"><i class="icon-jianshu"></i></a>
+						<a class="weixin" target="_blank" 
+							href="/wechat/U_knowJJ" title="微信"><i class="icon-weixin"></i></a>
 						
 					
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/null">技术笔记</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
-		        
 				</ul>
 			</nav>
 		</header>				
@@ -248,7 +186,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">984字</span>
+      <span class="post-count">986字</span>
     </span>
   </span>
 
@@ -268,148 +206,20 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="先上题目源码"><a href="#先上题目源码" class="headerlink" title="先上题目源码"></a>先上题目源码</h3><pre><code class="php+HTML">&lt;?php
-header(&quot;Content-Type:text/html; charset=utf-8&quot;);
-// 每5分钟会清除一次目录下上传的文件
-require_once(&#39;pclzip.lib.php&#39;);
+    <h3 id="先上题目源码"><a href="#先上题目源码" class="headerlink" title="先上题目源码"></a>先上题目源码</h3><h6 id="如下↓"><a href="#如下↓" class="headerlink" title="如下↓"></a>如下↓</h6><span id="more"></span>
 
-if(!$_FILES)&#123;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">header(&quot;Content-Type:text/html; charset=utf-8&quot;);</span><br><span class="line">// 每5分钟会清除一次目录下上传的文件</span><br><span class="line">require_once(&#x27;pclzip.lib.php&#x27;);</span><br><span class="line"></span><br><span class="line">if(!$_FILES)&#123;</span><br><span class="line"></span><br><span class="line">        echo &#x27;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;zh&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot; /&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;</span><br><span class="line">    &lt;title&gt;文件上传章节练习题&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css&quot; integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot; crossorigin=&quot;anonymous&quot;&gt;</span><br><span class="line">    &lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">        .login-box&#123;</span><br><span class="line">            margin-top: 100px;</span><br><span class="line">            height: 500px;</span><br><span class="line">            border: 1px solid #000;</span><br><span class="line">        &#125;</span><br><span class="line">        body&#123;</span><br><span class="line">            background: white;</span><br><span class="line">        &#125;</span><br><span class="line">        .btn1&#123;</span><br><span class="line">            width: 200px;</span><br><span class="line">        &#125;</span><br><span class="line">        .d1&#123;</span><br><span class="line">            display: block;</span><br><span class="line">            height: 400px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;login-box col-md-12&quot;&gt;</span><br><span class="line">        &lt;form class=&quot;form-horizontal&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; &gt;</span><br><span class="line">            &lt;h1&gt;文件上传章节练习题&lt;/h1&gt;</span><br><span class="line">            &lt;hr /&gt;</span><br><span class="line">            &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                &lt;label class=&quot;col-sm-2 control-label&quot;&gt;选择文件：&lt;/label&gt;</span><br><span class="line">                &lt;div class=&quot;input-group col-sm-10&quot;&gt;</span><br><span class="line">                    &lt;div &gt;</span><br><span class="line">                    &lt;label for=&quot;&quot;&gt;</span><br><span class="line">                        &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;</span><br><span class="line">                    &lt;/label&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">                </span><br><span class="line">        &lt;div class=&quot;col-sm-8  text-right&quot;&gt;</span><br><span class="line">            &lt;input type=&quot;submit&quot; class=&quot;btn btn-success text-right btn1&quot; /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">&#x27;;</span><br><span class="line"></span><br><span class="line">    show_source(__FILE__);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    $file = $_FILES[&#x27;file&#x27;];</span><br><span class="line"></span><br><span class="line">    if(!$file)&#123;</span><br><span class="line">        exit(&quot;请勿上传空文件&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    $name = $file[&#x27;name&#x27;];</span><br><span class="line"></span><br><span class="line">    $dir = &#x27;upload/&#x27;;</span><br><span class="line">    $ext = strtolower(substr(strrchr($name, &#x27;.&#x27;), 1));</span><br><span class="line">    $path = $dir.$name;</span><br><span class="line"></span><br><span class="line">    function check_dir($dir)&#123;</span><br><span class="line">        $handle = opendir($dir);</span><br><span class="line">        while(($f = readdir($handle)) !== false)&#123;</span><br><span class="line">            if(!in_array($f, array(&#x27;.&#x27;, &#x27;..&#x27;)))&#123;</span><br><span class="line">                if(is_dir($dir.$f))&#123;</span><br><span class="line">                    check_dir($dir.$f.&#x27;/&#x27;);</span><br><span class="line">                 &#125;else&#123;</span><br><span class="line">                    $ext = strtolower(substr(strrchr($f, &#x27;.&#x27;), 1));</span><br><span class="line">                    if(!in_array($ext, array(&#x27;jpg&#x27;, &#x27;gif&#x27;, &#x27;png&#x27;)))&#123;</span><br><span class="line">                        unlink($dir.$f);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(!is_dir($dir))&#123;</span><br><span class="line">        mkdir($dir);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $temp_dir = $dir.md5(time(). rand(1000,9999));</span><br><span class="line">    if(!is_dir($temp_dir))&#123;</span><br><span class="line">        mkdir($temp_dir);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if(in_array($ext, array(&#x27;zip&#x27;, &#x27;jpg&#x27;, &#x27;gif&#x27;, &#x27;png&#x27;)))&#123;</span><br><span class="line">        if($ext == &#x27;zip&#x27;)&#123;</span><br><span class="line">            $archive = new PclZip($file[&#x27;tmp_name&#x27;]);</span><br><span class="line">            foreach($archive-&gt;listContent() as $value)&#123;</span><br><span class="line">                $filename = $value[&quot;filename&quot;];</span><br><span class="line">                if(preg_match(&#x27;/\.php$/&#x27;, $filename))&#123;</span><br><span class="line">                     exit(&quot;压缩包内不允许含有php文件!&quot;);</span><br><span class="line">                 &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if ($archive-&gt;extract(PCLZIP_OPT_PATH, $temp_dir, PCLZIP_OPT_REPLACE_NEWER) == 0) &#123;</span><br><span class="line">                   exit(&quot;解压失败&quot;);</span><br><span class="line">                   check_dir($dir);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            check_dir($dir);</span><br><span class="line">            exit(&#x27;上传成功!&#x27;);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            move_uploaded_file($file[&#x27;tmp_name&#x27;], $temp_dir.&#x27;/&#x27;.$file[&#x27;name&#x27;]);</span><br><span class="line">            check_dir($dir);</span><br><span class="line">            exit(&#x27;上传成功!&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        exit(&#x27;仅允许上传zip、jpg、gif、png文件!&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-        echo &#39;
-
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;zh&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot; /&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot; /&gt;
-    &lt;title&gt;文件上传章节练习题&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css&quot; integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot; crossorigin=&quot;anonymous&quot;&gt;
-    &lt;style type=&quot;text/css&quot;&gt;
-        .login-box&#123;
-            margin-top: 100px;
-            height: 500px;
-            border: 1px solid #000;
-        &#125;
-        body&#123;
-            background: white;
-        &#125;
-        .btn1&#123;
-            width: 200px;
-        &#125;
-        .d1&#123;
-            display: block;
-            height: 400px;
-        &#125;
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class=&quot;container&quot;&gt;
-        &lt;div class=&quot;login-box col-md-12&quot;&gt;
-        &lt;form class=&quot;form-horizontal&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; &gt;
-            &lt;h1&gt;文件上传章节练习题&lt;/h1&gt;
-            &lt;hr /&gt;
-            &lt;div class=&quot;form-group&quot;&gt;
-                &lt;label class=&quot;col-sm-2 control-label&quot;&gt;选择文件：&lt;/label&gt;
-                &lt;div class=&quot;input-group col-sm-10&quot;&gt;
-                    &lt;div &gt;
-                    &lt;label for=&quot;&quot;&gt;
-                        &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;
-                    &lt;/label&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-                
-        &lt;div class=&quot;col-sm-8  text-right&quot;&gt;
-            &lt;input type=&quot;submit&quot; class=&quot;btn btn-success text-right btn1&quot; /&gt;
-        &lt;/div&gt;
-        &lt;/form&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-&#39;;
-
-    show_source(__FILE__);
-&#125;else&#123;
-    $file = $_FILES[&#39;file&#39;];
-
-    if(!$file)&#123;
-        exit(&quot;请勿上传空文件&quot;);
-    &#125;
-    $name = $file[&#39;name&#39;];
-
-    $dir = &#39;upload/&#39;;
-    $ext = strtolower(substr(strrchr($name, &#39;.&#39;), 1));
-    $path = $dir.$name;
-
-    function check_dir($dir)&#123;
-        $handle = opendir($dir);
-        while(($f = readdir($handle)) !== false)&#123;
-            if(!in_array($f, array(&#39;.&#39;, &#39;..&#39;)))&#123;
-                if(is_dir($dir.$f))&#123;
-                    check_dir($dir.$f.&#39;/&#39;);
-                 &#125;else&#123;
-                    $ext = strtolower(substr(strrchr($f, &#39;.&#39;), 1));
-                    if(!in_array($ext, array(&#39;jpg&#39;, &#39;gif&#39;, &#39;png&#39;)))&#123;
-                        unlink($dir.$f);
-                    &#125;
-                &#125;
-            
-            &#125;
-        &#125;
-    &#125;
-
-    if(!is_dir($dir))&#123;
-        mkdir($dir);
-    &#125;
-
-    $temp_dir = $dir.md5(time(). rand(1000,9999));
-    if(!is_dir($temp_dir))&#123;
-        mkdir($temp_dir);
-    &#125;
-
-    if(in_array($ext, array(&#39;zip&#39;, &#39;jpg&#39;, &#39;gif&#39;, &#39;png&#39;)))&#123;
-        if($ext == &#39;zip&#39;)&#123;
-            $archive = new PclZip($file[&#39;tmp_name&#39;]);
-            foreach($archive-&gt;listContent() as $value)&#123;
-                $filename = $value[&quot;filename&quot;];
-                if(preg_match(&#39;/\.php$/&#39;, $filename))&#123;
-                     exit(&quot;压缩包内不允许含有php文件!&quot;);
-                 &#125;
-            &#125;
-            if ($archive-&gt;extract(PCLZIP_OPT_PATH, $temp_dir, PCLZIP_OPT_REPLACE_NEWER) == 0) &#123;
-                   exit(&quot;解压失败&quot;);
-                   check_dir($dir);
-            &#125;
-
-            check_dir($dir);
-            exit(&#39;上传成功!&#39;);
-        &#125;else&#123;
-            move_uploaded_file($file[&#39;tmp_name&#39;], $temp_dir.&#39;/&#39;.$file[&#39;name&#39;]);
-            check_dir($dir);
-            exit(&#39;上传成功!&#39;);
-        &#125;
-    &#125;else&#123;
-        exit(&#39;仅允许上传zip、jpg、gif、png文件!&#39;);
-    &#125;
-&#125;
-</code></pre>
 <p>得知上传限制：</p>
 <p>1.仅允许上传zip、jpg、gif、png文件!</p>
 <p>2.如果上传压缩包，压缩包内不允许含有php文件</p>
 <h3 id="信息收集和代码分析"><a href="#信息收集和代码分析" class="headerlink" title="信息收集和代码分析"></a>信息收集和代码分析</h3><h5 id="限制1"><a href="#限制1" class="headerlink" title="限制1"></a>限制1</h5><p><img src="https://jjhome-1301842952.cos.ap-chongqing.myqcloud.com/markdown/001.png" alt="001"></p>
 <p>apache存在的多后缀文件解析漏洞，这里上传一个任何不可识别的后缀都行（如：x.php.xxx），都可绕过该正则限制</p>
-<h5 id="限制2"><a href="#限制2" class="headerlink" title="限制2"></a>限制2</h5><pre><code class="php">if ($archive-&gt;extract(PCLZIP_OPT_PATH, $temp_dir, PCLZIP_OPT_REPLACE_NEWER) == 0) &#123;
-                   exit(&quot;解压失败&quot;);
-                   check_dir($dir);
-</code></pre>
+<h5 id="限制2"><a href="#限制2" class="headerlink" title="限制2"></a>限制2</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="variable">$archive</span>-&gt;<span class="title function_ invoke__">extract</span>(PCLZIP_OPT_PATH, <span class="variable">$temp_dir</span>, PCLZIP_OPT_REPLACE_NEWER) == <span class="number">0</span>) &#123;</span><br><span class="line">                   <span class="keyword">exit</span>(<span class="string">&quot;解压失败&quot;</span>);</span><br><span class="line">                   <span class="title function_ invoke__">check_dir</span>(<span class="variable">$dir</span>);</span><br></pre></td></tr></table></figure>
+
 <p>接合上面未截出的代码得知，<code>check_dir</code>作用于<code>upload</code>文件夹以下，将解压出的文件穿越到<code>非upload</code>目录，<code>check__dir</code>将无法删除文件</p>
-<pre><code class="php">    $temp_dir = $dir.md5(time(). rand(1000,9999));
-    if(!is_dir($temp_dir))&#123;
-        mkdir($temp_dir);
-    &#125;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$temp_dir</span> = <span class="variable">$dir</span>.<span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">time</span>(). <span class="title function_ invoke__">rand</span>(<span class="number">1000</span>,<span class="number">9999</span>));</span><br><span class="line"><span class="keyword">if</span>(!<span class="title function_ invoke__">is_dir</span>(<span class="variable">$temp_dir</span>))&#123;</span><br><span class="line">    <span class="title function_ invoke__">mkdir</span>(<span class="variable">$temp_dir</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>zip</code>压缩包被解压到<code>/upload/随机md5/</code>目录下，由此可得知手动几乎不可能找到随机的文件夹，需要穿越两个目录</p>
 <h3 id="构造压缩包"><a href="#构造压缩包" class="headerlink" title="构造压缩包"></a>构造压缩包</h3><p>再此之前试过其他绕过方法后行不通，开始尝试使用压缩包来绕过</p>
 <p>将之前的PHP马改成<code>123123123.php.XXX</code>,文件名留够<code>/../../</code>的位置,以便穿越，后缀随便，我<code>jpg</code>是因为之前测试用的，就不改了</p>
@@ -424,49 +234,7 @@ if(!$_FILES)&#123;
     
 
     
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
 
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          UknowJJ
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://什么时候才能去旅行.com/2022/03/14/CTFHUB 【第二章web进阶-Web文件上传漏洞】/" title="CTFHUB 【第二章web进阶-Web文件上传漏洞】" target="_blank">http://什么时候才能去旅行.com/2022/03/14/CTFHUB 【第二章web进阶-Web文件上传漏洞】/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
     
 
   </div>
@@ -592,7 +360,7 @@ if(!$_FILES)&#123;
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019-2022 <a href="http://什么时候才能去旅行.com/" target="_blank">UknowJJ</a>
+    		&copy; 2019-2022 <a href="http://什么时候才能去旅行.com/" target="_blank">人们不会总是很快明白当前所做的事，直到它变成回忆~🍂</a>
     	</div>
       	<div class="footer-right">
 			
@@ -647,10 +415,10 @@ if(!$_FILES)&#123;
   var titleTime;
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
-      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+      document.title = "去哪~ " + originTitle;
       clearTimeout(titleTime);
     } else {
-      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+      document.title = "嘿，近来可好~" + originTitle;
       titleTime = setTimeout(function () {
         document.title = originTitle;
       }, 2000);
@@ -668,29 +436,13 @@ if(!$_FILES)&#123;
       
       
     
-      
-      
-      
-    
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 100%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">文章目录</a></li>
       
         
     </ul>
@@ -754,29 +506,7 @@ if(!$_FILES)&#123;
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="https://uknowjj.gitee.io/" target="_blank" 
-                class="search-title" title="交个朋友吧，咱们都很无聊">
-                
-                  <i class="icon-link icon"></i>
-                
-                技术笔记
-              </a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
-    
-    	<section class="tools-section tools-section-me" q-show="aboutme">
-        
-    	</section>
     
   </div>
   
@@ -883,7 +613,7 @@ if(!$_FILES)&#123;
 <script type="text/javascript" src="/plugins/activate-power-mode/activate-power-mode.js"></script>
 <script>
   POWERMODE.colorful = true; // make power mode colorful
-  POWERMODE.shake = false; // turn off shake
+  POWERMODE.shake = true; // turn off shake
   document.body.addEventListener('input', POWERMODE);
 </script>
 
